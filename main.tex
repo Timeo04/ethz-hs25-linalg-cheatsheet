@@ -17,6 +17,8 @@
 % --- FONT SIZE OVERRIDE ---
 \usepackage{scrextend}
 \changefontsizes{7pt} 
+
+\linespread{0.8} % Very tight line spacing
 % --------------------------
 
 \usepackage{titlesec}
@@ -263,7 +265,7 @@ $$
 %%%
 \subsection{\definition{Matrix Multiplication} $AB$}
 
-If $A_{m \times k}$ and $B_{k \times n}$, then $AB_{m \times n}$. \\
+If $A\in \mathbb{R}^{m \times k}$ and $B\in \mathbb{R}^{k \times n}$, then $AB\in \mathbb{R}^{m \times n}$. \\
 \textbf{BA}: 
 Square matrices: usually, $BA \not= AB$ (matrix multiplication is \textbf{not commutative}).
 General matrices: $BA$ can be undefined (if $m \not= n$), or of different size than $AB$.
@@ -841,7 +843,7 @@ There are $n!$ permutation matrices, since $n$ things can be ordered in $n!$ way
 
 \subsubsection{\definition{Orthogonal complement} $V^\bot$}
 If $V$ is a subspace of $\mathbb{R}^n$, then its \textbf{orthogonal complement}: $V^\bot=\{w \in \mathbb{R}^n | w^\top v=0 \text{ for all }v \in V\}$.\\
-\lemma{$V=(V^\top)^\top$}\\
+\lemma{$V=(V^\bot)^\bot$}\\
 \theorem{Vector decomposition by orth. complements}: If $V$, $W$ are orthogonal subspaces of $\mathbb{R}^n$, then
 $
 W = V^\bot \Leftrightarrow 
@@ -871,14 +873,21 @@ Let \(S\) be a subspace in \(\mathbb{R}^m\) with a basis $a_1,...,a_n$ that span
 
 %%%
 \subsection{Least Squares Approximation}
-\textbf{Goal}: Approximate a solution to System of equations (if it has no solution $\mathbf{x}$: find $x$ for which $Ax$ is as close as possible to $b$: \(\min_{\hat{x} \in \mathbb{R}^n} \,\|A \hat{x} - b\|^{2}\)\\
+\textbf{Goal}: Approximate a solution to System of equations (if it has no solution $\mathbf{x}$: find $\mathbf{x}$ for which $A\mathbf{x}$ is as close as possible to $\mathbf{b}$: \(\min_{\mathbf{\hat{x}} \in \mathbb{R}^n} \,\|A \mathbf{\hat{x}} - \mathbf{b}\|^{2}\)\\
 \[
     \underbrace{A^\top A\mathbf{\hat{x}}=A^\top\mathbf{b}}_{\text{Normal Equation}}.
 \]
-{\tiny \textbf{Usage}: find $A^\top A$ and $A^\top \mathbf{b}$ and solve system. When $A$ has independant columns: \greenBox{$\mathbf{\hat{x}}=(A^\top A)^{-1}A^\top\mathbf{b}$ (unique)}.}\\[2.22mm]
+{\tiny \textbf{Usage}: find $A^\top A$ and $A^\top \mathbf{b}$ and solve system. When $A$ has independent columns: \greenBox{$\mathbf{\hat{x}}=(A^\top A)^{-1}A^\top\mathbf{b}$ (unique)}.}\\[2.22mm]
 For any $A$, $\mathbf{C}(A^\top) = \mathbf{C}(A^\top A)$.
 \subsubsection{Linear Regression}
-Fitting a parabola\\
+Application of least squares problem, in which it is to find $A$ and $\mathbf{b}$ such that we can solve the system.  We have data-points (values $b_k$ over time $t_k$). We define a matrix $A=\begin{bmatrix}
+        1 & \mathbf{t}_1 \\ 
+        \vdots & \vdots \\
+        1 & \mathbf{t}_n
+    \end{bmatrix}$ and a result vector $\mathbf{b}=\begin{bmatrix}
+        \mathbf{b}_1 \\ \vdots \\ \mathbf{b}_n
+    \end{bmatrix}$ where $n$ is the total number of data points and $\mathbf{t}_i$ is the slope of the $i$th function, where $\mathbf{b}_i$ is its output. The first column is all $1$s because the constant element has no scalar. This comes from the following concept: $f(t)=\alpha_0+\alpha_1 $, so if the first data point is $(1,2)$, we get $\alpha+\alpha_1\cdot 1=2$, which will then transform into a SLE with other equations.\\[2.2mm]
+\textbf{Fitting a parabola}:\\
 \(
     (t_k,b_k)    =\{(0,1),(1,2),(2,5)\}, \ b_k \approx \alpha_0 + \alpha_1 t_k + \alpha_2 t_k^2 \\
     A            =\begin{pmatrix}
@@ -897,12 +906,17 @@ Fitting a parabola\\
 %%%
 \subsection{Orthonormal Bases and Gram Schmidt}
 
-\subsubsection{Orthonormal vectors}
-We say that vectors are orthonormal if they are orthogonal and have norm 1. \\
-If $Q$ is the matrix whose columns are the vectors, then the condition that the vectors are orthonormal can be rewritten as $Q^\top Q = I$.
+\subsubsection{\definition{Orthonormal vectors}}
+Vectors are orthonormal if they are orthogonal and have norm 1.\\ 
+($\mathbf{q}_i^\top\mathbf{q}_i=\delta_{ij}=\begin{cases}
+        0 & i\neq j \\
+        1 & i=j
+    \end{cases}$, with $\delta_{ij}$ being the \textit{Kronecker delta}.) \\
+For example the canonical basis $\mathbf{e}_1, ..., \mathbf{e}_n \in \mathbb{R}^{n \times n}$.
+%If $Q$ is the matrix whose columns are the vectors, then the condition that the vectors are orthonormal can be rewritten as $Q^\top Q = I$.
 
-\subsubsection{Orthogonal Matrix}
-A square matrix $Q_{n\times n}$ is an Orthogonal Matrix when $Q^\top Q = I$.
+\subsubsection{\definition{Orthogonal Matrix}}
+A square matrix $Q\in \mathbb{R}^{n\times n}$ is an Orthogonal Matrix when $Q^\top Q = I$.
 In this case $QQ^\top = I$, $Q^{-1} = Q^\top$, and the columns of Q form an orthonormal basis of $\mathbb{R}^n$. \\[2.22mm]
 Examples: permutation matrices, the $2\times 2$ matrix R that corresponds to rotating counterclockwise the plane by $\theta$ 
 \[
@@ -912,16 +926,16 @@ Examples: permutation matrices, the $2\times 2$ matrix R that corresponds to rot
         \sin\theta & \cos\theta
     \end{bmatrix}.
 \]
-Orthogonal matrices preserve norm and inner product of vectors. In other words, if $Q_{n\times n}$ is orthogonal then, for all $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$.
+\greenBox{Orthogonal matrices preserve norm and inner product of vectors.} I.e., if $Q\in \mathbb{R}^{n\times n}$ is orthogonal then, for all $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$.
 \[
     ||Q\mathbf{x}|| = ||\mathbf{x}|| \text{ and } (Q\mathbf{x})^\top(Q\mathbf{y}) = \mathbf{x}^\top\mathbf{y}.
 \]
 
-\subsubsection{Projections with Orthonormal Basis}
-Let $S$ be a subspace of $\mathbb{R}^n$ and $\mathbf{q}_1, \dots, \mathbf{q}_n$ be an orthonormal basis for $S$. Let $Q_{m\times n}$ be the matrix whose columns are the $\mathbf{q}_i$’s.
+\subsubsection{\greenBox{Projections/Least squares with Orthonormal Basis}}
+Let $S$ be a subspace of $\mathbb{R}^n$ and $\mathbf{q}_1, \dots, \mathbf{q}_n$ be an orthonormal basis for $S$. Let $Q\in \mathbb{R}^{m\times n}$ be the matrix whose columns are the $\mathbf{q}_i$’s.
 The Projection Matrix that projects to $S$ is given by $QQ^\top$ and the Least Squares solution to $Q\mathbf{x} = \mathbf{b}$ is given by $\mathbf{\hat{x}} = Q^\top\mathbf{b}$.
 
-\subsubsection{Gram-Schmidt Process}
+\subsubsection{\theorem{Gram-Schmidt algorithm}}
 Given $n$ linearly independent vectors $\mathbf{a}_1,\dots,\mathbf{a}_n$ that span a subspace $S$, the Gram-Schmidt process constructs an orthonormal basis $\mathbf{q}_1,\dots,\mathbf{q}_n$ the following way:
 \begin{itemize}
     \item 
@@ -934,8 +948,9 @@ Given $n$ linearly independent vectors $\mathbf{a}_1,\dots,\mathbf{a}_n$ that sp
         \end{itemize}
 \end{itemize}
 
-\subsubsection{$QR$ decomposition}
-The $QR$ decomposition of $A_{m\times n}$ is $A = QR$ where $Q_{m\times n}$ is the output of Gram-Schmidt on $A$ and $R_{n \times n} = Q^\top A$ is an upper triangular matrix. \\[2.22mm]
+\subsubsection{\definition{$QR$ decomposition}}
+The $QR$ decomposition of $A\in \mathbb{R}^{m\times n}$ is $A = QR$ where $Q\in \mathbb{R}^{m\times n}$ is the output of Gram-Schmidt on $A$ and $R\in\mathbb{R}^{n \times n} = Q^\top A$ \lemma{is an upper triangular, invertible matrix} and \lemma{$QQ^\top A = A$}, hence the QR-Decomposition is well-defined. \\[2.22mm]
+
 Since $\mathbf{N}(A) = \mathbf{N}(R) = \{\mathbf{0}\}$, both $R$ and $R^\top$ are invertible.
 \subsubsection*{Projections}
 Since $\mathbf{C}(A) = \mathbf{C}(Q)$, the projections on $\mathbf{C}(A)$ can be done with $Q$ which means they are given by $\text{proj}_{\mathbf{C}(A)}(b) = QQ^\top\mathbf{b}$.
@@ -949,20 +964,21 @@ Since $\mathbf{C}(A) = \mathbf{C}(Q)$, the projections on $\mathbf{C}(A)$ can be
         \Rightarrow R\mathbf{\hat{x}}= Q^\top\mathbf{b}
     \end{split}
 \end{equation*}
+{\tiny We can use back-substitution, as $R$ is triangular.}
 
 %%%
-\subsection{\textcolor{LimeGreen}{The Pseudoinverse $A^\dag$}}
+\subsection{The \definition{Pseudoinverse} $A^\dag$}
 
 \subsubsection{Full Column Rank Matrices}
-For $A_{m\times n}$ with $\text{rank}(A) = n$, $A^\dag = (A^\top A)^{-1}A^\top$. \\
-$A^\dag$ is a left inverse of $A$, meaning that $A^\dag A = I$.
+For $A\in\mathbb{R}^{m\times n}$ with $\operatorname{rank}(A) = n$, $A^\dag = (A^\top A)^{-1}A^\top$. \\
+$A^\dag$ is a \textbf{left inverse} of $A$, meaning that $A^\dag A = I$.
 
 \subsubsection{Full Row Rank Matrices}
 For $A_{m\times n}$ with $\text{rank}(A) = m$, $A^\dag = A^\top (AA^\top)^{-1}$. \\
-$A^\dag$ is a right inverse of $A$, meaning that $AA^\dag = I$. \\[2.22mm]
+$A^\dag$ is a \textbf{right inverse} of $A$, meaning that $AA^\dag = I$. \\[2.22mm]
 The unique solution $\mathbf{\hat{x}}\in\mathbf{C}(A^\top)$ to $\underset{\mathbf{x}\in\mathbb{R}^n}{\min}||\mathbf{x}||^2$ such that $A\mathbf{x}=\mathbf{b}$ is given by $\mathbf{\hat{x}} = A^\dag\mathbf{b}$.
 
-\subsubsection{All Matrices}
+\subsubsection{\theorem{All Matrices}}
 For $A_{m\times n}$ with $\text{rank}(A) = r$ and decomposition $A = CR$, 
 \begin{equation*}
     \begin{split}
@@ -971,19 +987,19 @@ For $A_{m\times n}$ with $\text{rank}(A) = r$ and decomposition $A = CR$,
                                &= R^\top(C^\top AR^\top)^{-1} C^\top.
     \end{split}
 \end{equation*}
-The unique solution $\mathbf{\hat{x}}\in\mathbf{C}(A^\top)$ to $\underset{\mathbf{x}\in\mathbb{R}^n}{\min}||\mathbf{x}||^2$ such that $A^\top A\mathbf{x}=A^\top\mathbf{b}$ is given by $\mathbf{\hat{x}} = A^\dag\mathbf{b}$. \\[2.22mm]
-We can compute the pseudoinverse from any full rank factorization, not just specifically the $CR$ decomposition.
+The unique solution $\mathbf{\hat{x}}\in\mathbf{C}(A^\top)$ to $\underset{\mathbf{x}\in\mathbb{R}^n}{\min}||\mathbf{x}||^2$ such that $A^\top A\mathbf{x}=A^\top\mathbf{b}$ is given by \lemma{$\mathbf{\hat{x}} = A^\dag\mathbf{b}$.} \\[2.22mm]
+We can compute the pseudoinverse \greenBox{from any full rank factorization}, not just specifically the $CR$ decomposition.
 
-\subsubsection{Some Pseudoinverse Facts}
-\begin{enumerate}
-    \item $(AB)^\dag = B^\dag A^\dag$, as long as rank$(A)$ = rank$(B) = n$.
-    \item $(A^\dag)^\top = (A^\top)^\dag$
-    \item $AA^\dag$ is symmetric and is the projection matrix for projection on $\mathbf{C}(A)$
-    \item $A^\dag A$ is symmetric and is the projection matrix for projection on $\mathbf{C}(A^\top)$
-\end{enumerate}
+\subsubsection{\theorem{Some Pseudoinverse Facts}}
+\begin{itemize}
+    \item $AA^\dag A=A$ and $A^\dag AA^\dag = A^\dag$ and $(A^\dag)^\top = (A^\top)^\dag$
+    \item $AA^\dag$ is symmetric and is the projection matrix on $\mathbf{C}(A)$
+    \item $A^\dag A$ is symmetric and is the projection matrix on $\mathbf{C}(A^\top)$
+    \item ($(AB)^\dag = B^\dag A^\dag$, as long as rank$(A)$ = rank$(B) = n$.; needs proof)
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{The Determinant $\det(A)$}}
+\section{The Determinant $\det(A)$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
