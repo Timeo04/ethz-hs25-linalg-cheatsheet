@@ -14,13 +14,18 @@
 \usepackage{tikz}
 \usepackage{tcolorbox}
 
+%%%% Smaller Spacing
 % --- FONT SIZE OVERRIDE ---
 \usepackage{scrextend}
 \changefontsizes{7pt} 
 
 \linespread{0.8} % Very tight line spacing
-% --------------------------
 
+% make itemize use less space
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+% Remove titlespacing
 \usepackage{titlesec}
 \titlespacing*{\section}
 {0pt}{1.2ex}{0.8ex}
@@ -31,7 +36,8 @@
 \titlespacing*{\subsubsection}
 {0pt}{2.0ex}{0.4ex}
 
-
+%--------------------------------------------------------
+%
 \titleformat{\section}
   {\fontsize{9pt}{11pt}\selectfont\bfseries\color{teal}}
   {\thesection}{1em}{}
@@ -51,9 +57,10 @@
 \newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
 \newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
 
+
 \title{Linare Algebra: Cheat Sheet}
-\author{Noah Marro \and Cedric Bolleter}
-\date{December 2023 / January 2026}
+\author{Cedric Bolleter}
+\date{January 2026}
 
 \begin{document}
 \begin{multicols*}{3}
@@ -1002,11 +1009,12 @@ We can compute the pseudoinverse \greenBox{from any full rank factorization}, no
 \section{The Determinant $\det(A)$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{$2\times 2$-matrices}
 \[
-    \begin{vmatrix}
+    det(\begin{vmatrix}
         a & b\\
         c & d
-    \end{vmatrix} :=
+    \end{vmatrix}) :=
     \det\begin{bmatrix}
         a & b\\
         c & d
@@ -1015,8 +1023,9 @@ We can compute the pseudoinverse \greenBox{from any full rank factorization}, no
 \]
 \includegraphics[width=\columnwidth]{33det}
 
-\subsubsection{Definition}
-Given a permutation $\sigma : \{1,\dots,n\} \rightarrow \{1,\dots,n\}$, its sign is defined as \\[2.22mm]
+\subsection{General case}
+\subsubsection{\definition{Definition}}
+Given a permutation $\sigma : \{1,\dots,n\} \rightarrow \{1,\dots,n\}$ (there exist $n!$), its sign is defined as \\
 \includegraphics[width=\columnwidth]{signPermutation}
 \[
     \det(A) =
@@ -1024,47 +1033,69 @@ Given a permutation $\sigma : \{1,\dots,n\} \rightarrow \{1,\dots,n\}$, its sign
 \]
 where $\Pi_n$ is the set of all permutations of n elements. \\[2.22mm]
 From this definition one can verify the following propositions. \\[2.22mm]
-        $A\ \text{is invertible} \Leftrightarrow \det(A) \not= 0$, \\[1.11mm]
-        $\det(A^{-1}) = \frac{1}{\det(A)}$, $\det(A^\top) = \det(A)$, $\det(I) = 1$, \\[1.11mm]
-        $\det(AB) = \det(A)\det(B)$, \\[1.11mm]
-        A permutation matrix $P$ corresponding to a permutation $\sigma$ has $\det(P) = \text{sgn}(\sigma)$, \\[1.11mm]
-        A triangular matrix $T$ has $\det(T)=\prod_{k=1}^nT_{kk}$, \\[1.11mm]
-        an orthogonal matrix $Q$ has $\det(Q) = 1$ or $-1$ \\
-        \textit{Proof:} $1 = \det(I) = \det(Q^\top Q) = \det(Q^\top)\det(Q) = \det(Q)^2$.
+        \theorem{$A\ \text{is invertible} \Leftrightarrow \det(A) \not= 0$}, \\[1.11mm]
+        \theorem{$\det(A^{-1}) = \frac{1}{\det(A)}$} (if $A^{-1}$ exists), \theorem{$\det(A^\top) = \det(A)$}, \\[1.11mm]
+        \theorem{$\det(AB) = \det(A)\det(B)$}, $\det(A^n)=\det(A)^n$\\[1.11mm]
+        A permutation matrix $P$ corresponding to a permutation $\sigma$ has \greenBox{$\det(P) = \text{sgn}(\sigma)$}, \\[1.11mm]
+        A triangular matrix $T$ has \greenBox{$\det(T)=\prod_{k=1}^nT_{kk}$}, $\det(I) = 1$, \\[1.11mm]
+        an orthogonal matrix \greenBox{$Q$ has $\det(Q) = 1$ or $-1$} \\
+        \textit{Proof:} $1 = \det(I) = \det(Q^\top Q) = \det(Q^\top)\det(Q) = \det(Q)^2$. \\
+    {\tiny if $\det(Q)=1$, $Q$ is a rotation matrix. If $\det(Q)=-1$, $Q$ is a reflection matrix.}\\[1.11mm]
+        $\det(\lambda A) = \lambda^n \det(A)$
 
-\subsubsection{Co-Factors}
+\subsubsection{\definition{Co-Factors}}
 Given $A_{n\times n}$, for each $1 \leq i,j \leq n$ let $\mathcal{A}_{ij}$ denote the $(n-1)\times(n-1)$
 matrix obtained by removing row $i$ and column $j$ from $A$. Then we define the co-factors of $A$ as
 $C_{ij} = (-1)^{i+j} \det(\mathcal{A}_{ij})$. \\[2.22mm]
 The determinant can be written in terms of co-factors: \\
 For any row $1\leq i\leq n$,
-$\det(A) = \sum_{j=1}^{n}A_{ij}\mathbf{C}_{ij}$. \\[2.22mm]
+\greenBox{$\det(A) = \sum_{j=1}^{n}A_{ij}\mathbf{C}_{ij}$}. \\[2.22mm]
 We can (inefficiently) compute the inverse using co-factors:
-$A^{-1} = \frac{1}{\det(A)}C^\top$,
-where $C_{n\times n}$ is the matrix with the co-factors of $A$ as entries.
+\greenBox{$A^{-1} = \frac{1}{\det(A)}C^\top$},
+where $C\in \mathbb{R}^{n\times n}$ is the matrix with the co-factors of $A$ as entries.
 In other words, $AC^\top = \det(A)I$.
 
-\subsubsection{Cramer’s Rule}
+\subsubsection{\greenBox{Cramer’s Rule}}
 The solution $\mathbf{x}$ of $A\mathbf{x} = \mathbf{b}$, if $\det(A)\not=0$, is given by
 $\mathbf{x}_j=\frac{\det(\mathcal{B}_j)}{\det(A)}$,
 where $\mathcal{B}_j$ is the matrix obtained by replacing the $j$-th column of $A$ with $\mathbf{b}$.
 This is inefficient to compute.
 
 \subsubsection{Elimination and the Determinant}
-To efficiently compute $\det(A)$, we use the $PA=LU$ decomposition. Because $\det(P)=\text{sgn}(P)$ and $\det(L)=1$ ($L$ is lower triangular with only 1s in the diagonal),
-$\det(A) = \frac{1}{\det(P)}\det(L)\det(U) = \text{sgn}(P)\det(U)$.
-Since $U$ is upper triangular, $\det(U)$ is simply the product of its diagonal entries. \\[2.22mm]
-If $P$ is a permutation that swaps two rows of $A$ then $\det(PA) = -\det(A)$. \\[2.22mm]
-The determinant is linear in each column (or row): 
+If $P$ is a permutation that swaps two rows of $A$ then \greenBox{$\det(PA) = -\det(A)$}. \\[2.22mm]
+\greenBox{The determinant is linear in each row (and column)}: 
 For any $\mathit{a}_0,\mathit{a}_1,\mathit{a}_2,\dots,\mathit{a}_n \in \mathbb{R}^n$ and $\alpha_0,\alpha_1 \in \mathbb{R}$ we have \\[1.11mm]
-\includegraphics[width=\columnwidth]{detLinearity}
+\includegraphics[width=0.75\columnwidth]{detLinearity}\\
+For example,
+    \(
+    \det
+    \begin{bmatrix}
+        \alpha_0 a_0^T + \alpha_1 a_1^T \\
+        a_2^T                           \\
+    \end{bmatrix}
+    =
+    \alpha_0
+    \det
+    \begin{bmatrix}
+        a_0^T \\
+        a_2^T \\
+    \end{bmatrix}
+    +
+    \alpha_1
+    \det
+    \begin{bmatrix}
+        a_1^T \\
+        a_2^T \\
+    \end{bmatrix}.
+    \)
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{Eigenvalues and Eigenvectors}}
+\section{Eigenvalues and Eigenvectors}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%
-\subsection{\textcolor{LimeGreen}{Complex Numbers $\mathbb{C}$}}
+\subsection{Complex Numbers $\mathbb{C}$}
 \[
     \mathbb{C} = \{z=a+ib:a,b\in\mathbb{R},\ i^2=-1\}
 \]
@@ -1079,49 +1110,62 @@ We can do operations with complex numbers:
 \textbf{Euler’s Formula.} Given $\theta \in \mathbb{R}$, $e^{i\theta} = \cos\theta+i\sin\theta$. \\
 This means, that $e^{i\pi}+1 = 0$. \\[2.22mm]
 \textbf{Polar Coordinates.} $z=re^{i\theta}$, where $r=|z|$ and $\theta$ is called the argument of $z$.\\[2.22mm]
-\textbf{Fundamental Theorem of Algebra.} Any degree $n\geq1$ polynomial $P(z)=\alpha_nz^n+\alpha_{n-1}z^{n-1}+\cdots+\alpha_1z+\alpha_0$
+\includegraphics[width=0.4\columnwidth]{complexnumber}\\
+\theorem{Fundamental Theorem of Algebra}. Any degree $n\geq1$ polynomial $P(z)=\alpha_nz^n+\alpha_{n-1}z^{n-1}+\cdots+\alpha_1z+\alpha_0$
 (with $\alpha_n\not=0$) has a zero $\lambda\in\mathbb{C}$ such that $P(\lambda)=0$. \\[1.11mm]
-Any such polynomial $P(z)$ has $n$ zeros $\lambda_1,\dots,\lambda_n\in\mathbb{C}$, perhaps with repetitions, such that
+\greenBox{Any such polynomial $P(z)$ has $n$ zeros} $\lambda_1,\dots,\lambda_n\in\mathbb{C}$, perhaps with repetitions, such that
 $P(z)=\alpha_n(z-\lambda_1)\cdots(z-\lambda_n)$.
-The number of times $\lambda_i$ appears in this expansion is called the \textbf{algebraic multiplicity} of $\lambda_i$.
+The number of times $\lambda_i$ appears in this expansion is called the \definition{\textbf{algebraic multiplicity} of $\lambda_i$}.
 
 \subsubsection{Complex-valued Matrices and Vectors}
 The natural operation of “transposing” for complex vectors and matrices is that of “\textbf{conjugate transpose}” or “hermitian transpose”: $A^*=\overline{A}^\top$. \\[2.22mm]
 \textbf{Length}: $||\mathbf{v}|| = \sqrt{|v_1|^2+\cdots +|v_n|^2}$. \\
-\textbf{Scalar Product}: $\left<\mathbf{v},\mathbf{w}\right> = \mathbf{w}^*\mathbf{v}$.
+\textbf{Scalar (inner) Product}: $\left<\mathbf{v},\mathbf{w}\right> = \mathbf{w}^*\mathbf{v}$.
 
 %%%
-\subsection{\textcolor{LimeGreen}{Introduction to Eigenvalues and Eigenvectors}}
-Given $A\in\mathbb{R}^{n\times n}$, we say $\lambda \in \mathbb{C}$ and $\mathbf{v} \in \mathbb{C}^n\setminus\{0\}$ are an eigenvalue-eigenvector pair of $A$ when $A\mathbf{v} = \lambda\mathbf{v}$ holds.
+\subsection{Introduction to Eigenvalues and Eigenvectors}
+Given $A\in\mathbb{R}^{n\times n}$, we say $\lambda \in \mathbb{C}$ and $\mathbf{v} \in \mathbb{C}^n\setminus\{0\}$ are an \definition{eigenvalue-eigenvector pair} of $A$ when \definition{$A\mathbf{v} = \lambda\mathbf{v}$} holds. If $\lambda \in \mathbb{R}$, then we have a real eigenvalue-eigenvector pair.
 
 \subsubsection{Finding Eigenvalues and Eigenvectors}
 An eigenvalue $\lambda \in \mathbb{C}$ is a solution of $\det(A - \lambda I) = 0$, which is a polynomial equation.\\[1.11mm]
 An associated eigenvector $\mathbf{v} \in \mathbf{N}(A-\lambda I)$ is a non-zero solution to $(A-\lambda I)\mathbf{v}=\mathbf{0}$.
 
 \subsubsection{Theorems and Propositions}
-Every $A_{n\times n}$ has a an eigenvalue (perhaps complex-valued). \\[2.22mm]
-If $\lambda$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A$, then, for $k\geq1$, $\lambda^k$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A^k$.
+\lemma{Complex EW exist in conjugate pairs for real \(A\)}: Let $A \in \mathbb{R}^{n \times n}$. If $(\lambda, \mathbf{v})$ is an eigenvalue–eigenvector pair, then
+    \(
+    (\overline{\lambda}, \overline{\mathbf{v}})
+    \)
+    is also an eigenvalue–eigenvector pair.\\[2.22mm]
+\theorem{Every $A\in \mathbb{R}^{n\times n}$ has an eigenvalue} (perhaps complex-valued). \\[2.22mm]
+If $\lambda$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A$, then, \greenBox{for $k\geq1$, $\lambda^k$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A^k$}.\\
 \textit{Proof:} Induction Step: $A^k\mathbf{v} = A(A^{k-1}\mathbf{v}) = A(\lambda^{k-1}\mathbf{v}) = \lambda^k\mathbf{v}$.\\[2.22mm]
-If $\lambda$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of an invertible $A$, then, 
-$\frac{1}{\lambda}$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A^{-1}$. 
+If $\lambda$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of an invertible $A$ (and $\lambda \ne 0$), then, 
+\greenBox{$\frac{1}{\lambda}$ and $\mathbf{v}$ are an eigenvalue-eigenvector pair of $A^{-1}$}. \\
 \textit{Proof:} $A\mathbf{v} = \lambda\mathbf{v} \Rightarrow A^{-1}(\lambda\mathbf{v}) = \mathbf{v} \Rightarrow A^{-1}\mathbf{v} = \frac{1}{\lambda}\mathbf{v}$.\\[2.22mm]
-Let $A_{n\times n}$ and let $\mathbf{v}_1,\dots,\mathbf{v}_k \in \mathbb{R}^n$ be eigenvectors corresponding to eigenvalues $\lambda_1,\dots,\lambda_k \in \mathbb{R}$. 
-If $\lambda_1,\dots,\lambda_k$ are all distinct, the eigenvectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ are linearly independent.\\[2.22mm]
-If $A_{n\times n}$ has $n$ distinct real eigenvalues, then the eigenvectors form a basis for $\mathbb{R}^n$.
+Let $A\in \mathbb{R}^{n\times n}$ and let $\mathbf{v}_1,\dots,\mathbf{v}_k \in \mathbb{R}^n$ be eigenvectors corresponding to eigenvalues $\lambda_1,\dots,\lambda_k \in \mathbb{R}$. 
+If $\lambda_1,\dots,\lambda_k$ are all distinct, the eigenvectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ are \lemma{linearly independent}.\\[2.22mm]
+If $A_{n\times n}$ has $n$ distinct real eigenvalues, then the eigenvectors \theorem{form a basis for $\mathbb{R}^n$} (Eigenbasis).\\[2.22mm]
+The eigenvalues of $A \in \mathbb{R}^{n \times n}$ \lemma{are the same as those of $A^T$}.
+\textit{Proof:} $\det(A - zI) = \det((A - zI)^\top) = det(A^\top - zI)$. \\[2.22mm]
 
-\subsubsection{Characteristic Polynomial}
+\subsubsection{\definition{Characteristic Polynomial}}
 \[
     (-1)^n\det(A-zI) = \det(zI-A) = (z-\lambda_1)\cdots(z-\lambda_n)
 \]
-Given $A_{n \times n}$ the eigenvalues of $A$ are the same as the ones of $A^\top$.
-\textit{Proof:} $\det(A - zI) = \det((A - zI)^\top) = det(A^\top - zI)$. \\[2.22mm]
-Let $A_{n\times n}$ and $\lambda_1,\dots,\lambda_n$ its $n$ eigenvalues as they show up in the characteristic polynomial
+Let $A\in \mathbb{R}^{n\times n}$ and $\lambda_1,\dots,\lambda_n$ its $n$ eigenvalues as they show up in the characteristic polynomial
 (meaning that a value $\lambda$ may be repeated, the number of times it shows up is the \textbf{algebraic multiplicity} of $\lambda$), then
-\[
+\lemma{$
     \text{Tr}(A) = \sum_{i=1}^{n}A_{ii} = \sum_{i=1}^{n}\lambda_i,\qquad
     \det(A) = \prod_{i=1}^n\lambda_i. 
-\]
-This is usefull to \textbf{verify computations}.
+$}\\
+\textit{This is useful to \textbf{verify computations}.}\\
+For $A, B, C \in \mathbb{R}^{n\times n}$:
+    \\
+    \lemma{\(
+    \operatorname{Tr}(AB) = \operatorname{Tr}(BA),
+    \text{ and }
+    \operatorname{Tr}(ABC) = \operatorname{Tr}(BCA) = \operatorname{Tr}(CAB).
+    \)}
 
 \subsubsection{Words of Caution}
 Even thought the eigenvalues of $A$ and $A^\top$ are the same, the eigenvectors are not!\\[1.11mm]
@@ -1129,74 +1173,157 @@ The eigenvalues of $A+B$ are not easily computed from the eigenvalues of $A$ and
 The eigenvalues of $AB$ are not easily computed from the eigenvalues of $A$ and $B$, they are not their product!\\[1.11mm]
 Gauss elimination doesn’t preserve eigenvalues and eigenvectors.
 
-\subsubsection{Eigenvalues of Orthogonal Matrices}
-Let $Q_{n\times n}$ be an orthogonal matrix. If $\lambda \in \mathbb{C}$ is an eigenvalue of $Q$,
-then $|\lambda| = 1$. 
+\subsubsection{\greenBox{Eigenvalues of Orthogonal Matrices}}
+Let $Q\in \mathbb{R}^{n\times n}$ be an orthogonal matrix. If $\lambda \in \mathbb{C}$ is an eigenvalue of $Q$,
+then $|\lambda| = 1$. \\
 \textit{Proof:} $||\mathbf{v}||^2 = ||Q\mathbf{v}||^2 = ||\lambda\mathbf{v}||^2 = |\lambda|^2||\mathbf{v}||^2$. 
 Since $\mathbf{v} \not= \mathbf{0}$ we have $|\lambda| = 1$.
 
 \subsubsection{Repeated Eigenvalues}
 Repeated eigenvalues can (but doesn’t have to) pose a real obstacle to building a basis. \\[2.22mm]
-If, given a matrix $A_{n\times n}$, we can build a basis of $\mathbb{R}^n$ with eigenvectors of $A$ we say that $A$ has a \textbf{complete set of real eigenvectors}. \\[2.22mm]
-Given $A$ and an eigenvalue $\lambda$ of $A$ we call the dimension of $\mathbf{N}(A-\lambda I)$ the \textbf{geometric multiplicity} of $\lambda$. \\[2.22mm]
-Let $P$ be the \textbf{Projection Matrix} on the subspace $U \subseteq \mathbb{R}^n$. Then $P$ has two eigenvalues, 0 and 1, and a complete set of real eigenvectors. \\[2.22mm]
+If, given a matrix $A\in \mathbb{R}^{n\times n}$, we can build a basis of $\mathbb{R}^n$ with eigenvectors of $A$ we say that $A$ has a \definition{complete set of real eigenvectors}. \\[2.22mm]
+Given $A$ and an eigenvalue $\lambda$ of $A$ we call the dimension of $\mathbf{N}(A-\lambda I)$ the \definition{geometric multiplicity} of $\lambda$. \\[2.22mm]
+\lemma{A matrix has a complete set of real eigenvectors} if and only if all its
+    eigenvalues are real and the geometric multiplicities equal the algebraic
+    multiplicities for all eigenvalues.\\[2.22mm]
+Let $P$ be the \textbf{Projection Matrix} on the subspace $U \subseteq \mathbb{R}^n$. Then \greenBox{$P$ has two eigenvalues, 0 and 1, and a complete set of real eigenvectors}. \\[2.22mm]
 For a \textbf{Diagonal Matrix} $D_{n\times n}$, the eigenvalues of $D$ are the diagonal entries of $D$. The canonical basis $\mathbf{e}_1,\dots,\mathbf{e}_n$ is a set of eigenvectors of $D$.
 
-%%%
-\subsection{\textcolor{LimeGreen}{Diagonalization and Change of Basis}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diagonalization and Singular Value Decomposition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%
+\subsection{Diagonalization}
 \subsubsection{Change of Basis of a Linear Transformation}
 Let $U_{n\times n}$ have the basis elements $\mathbf{u}_1,\dots,\mathbf{u}_n$ for columns and $V_{m\times m}$ the basis elements $\mathbf{v}_1,\dots,\mathbf{v}_m$. \\
 Let $A_{m\times n}$ correspond to a linear transformation $L : \mathbb{R}^n \rightarrow \mathbb{R}^m$ in the basis $\mathbf{u}_1,\dots,\mathbf{u}_n$. \\
 The matrix $B_{m\times n}$, corresponding to $L$ written in the new basis $\mathbf{v}_1,\dots,\mathbf{v}_m$, is
 $B = V^{-1}AU$.
 
-\subsubsection{Diagonalizing a Matrix}
-Let $A_{n\times n}$ have a complete set of real eigenvectors. Let $\mathbf{v}_1,\dots,\mathbf{v}_n\in \mathbb{R}_{n\times n}$ be a basis formed with eigenvectors of $A$ 
+\subsubsection{\theorem{Diagonalization of a Matrix}}
+Let $A\in \mathbb{R}^{n\times n}$ have a complete set of real eigenvectors (eigenbasis). Let $\mathbf{v}_1,\dots,\mathbf{v}_n\in \mathbb{R}^{n\times n}$ be a basis formed with eigenvectors of $A$ 
 and let $\lambda_1,\dots,\lambda_n$ be the associated eigenvalues ($\lambda_i$ associated to $\mathbf{v}_i$). 
 Let $V$ be the matrix whose columns are the eigenvectors $\mathbf{v}_i$. Then,
-$$A = V\Lambda V^{-1},$$
-where $\Lambda$ is a diagonal matrix with $\Lambda_{ii} = \lambda_i$. \\[2.22mm]
-We say that $A_{n\times n}$ and $B_{n\times n}$ are \textbf{similar matrices} if there exists an invertible matrix $S$ such that $B = S^{-1}AS$. Similar matrices have the same eigenvalues.
+\theorem{$A = V\Lambda V^{-1},$}
+where $\Lambda$ is a diagonal matrix with $\Lambda_{ii} = \lambda_i$.\\
+ Equivalently,
+    \(
+    \Lambda = V^{-1} A V,
+    \)
+    since $V$ is invertible. \\
+    \[
+    \text{Std. coord.}
+    \;\xrightarrow{V^{-1}}\;
+    \text{EV. coord.}
+    \;\xrightarrow{\Lambda}\;
+    \text{EV. coord.}
+    \;\xrightarrow{V}\;
+    \text{Std. coord.}
+\]\\[2.22mm]
+A matrix $A \in \mathbb{R}^{n \times n}$ is called \definition{diagonalizable} if there exists
+    an invertible matrix $V$ such that
+    \(
+    V^{-1} A V = \Lambda,
+    \)
+    where $\Lambda$ is a diagonal matrix.\\[2.22mm]
+We say that $A\in\mathbb{R}^{n\times n}$ and $B\in\mathbb{R}^{n\times n}$ are \definition{similar matrices} if there exists an invertible matrix $S$ such that $B = S^{-1}AS$. \greenBox{Similar matrices have the same eigenvalues}.
 
 %%%
 \subsection{\textcolor{LimeGreen}{Symmetric Matrices and the Spectral\\Theorem}}
 
 \subsubsection{Spectral Theorem}
-Any symmetric matrix $A_{n\times n}$ has $n$ real eigenvalues and an orthonormal basis made of eigenvectors of $A$.\\[2.22mm]
-\textbf{Eigendecomposition.} For any symmetric matrix $A$ there exists an orthogonal matrix $V$ (whose columns are eigenvectors of $A$) such that
-$$A = V\Lambda V^\top,$$
-where $\Lambda$ is a diagonal matrix with the eigenvalues of $A$ in its diagonal (and $V^\top V = I$). 
-Another way to look at it is $A = \sum_{k=1}^{n}\lambda_i\mathbf{v}_i\mathbf{v}_i^\top$. \\[2.22mm]
-For a real symmetric matrix $A,\ \text{rank}(A) =$ \# non-zero eigenvalues (counting repetitions).\\[2.22mm]
-All eigenvalues of symmetric matrices are real. And every symmetric matrix has a real eigenvalue.
+\theorem{Spectral Theorem}: Any symmetric matrix $A\in \mathbb{R}^{n\times n}$ has $n$ real eigenvalues and an orthonormal basis consisting of eigenvectors of $A$.\\[2.22mm]
+\greenBox{\textbf{Eigendecomposition}}: For any symmetric matrix $A\in \mathbb{R}^{n\times n}$ there exists an orthogonal matrix $V\in \mathbb{R}^{n\times n}$ (whose columns are eigenvectors of $A$) such that \greenBox{$A = V\Lambda V^\top$}, 
+where $\Lambda\in \mathbb{R}^{n\times n}$ is a diagonal matrix with the eigenvalues of $A$ in its diagonal and $V^\top V = I$. \\[2.22mm]
+\greenBox{Rank-One Spectral Decomposition}: Let $A \in \mathbb{R}^{n \times n}$ be symmetric, and let
+    $v_1, \ldots, v_n$ be an orthonormal basis of eigenvectors of $A$
+    (the columns of $V$), with associated eigenvalues
+    $\lambda_1, \ldots, \lambda_n$.
+    Then
+    \(
+    A = \sum_{k=1}^n \lambda_k \, v_k v_k^T.
+    \)
+    \\
+    \textit{A real symmetric matrix is a weighted sum of orthogonal projections onto its eigenvector directions, with weights given by the eigenvalues.}\\[2.22mm]
+\greenBox{Rank of real symmetric matrix}: For a real symmetric matrix $A,\ \text{rank}(A) =$ \# non-zero eigenvalues of $A$ (counting repetitions).\\[2.22mm]
+\lemma{Orthogonality of EV}: Let $A \in \mathbb{R}^{n \times n}$ be symmetric and let
+    $\lambda_1 \neq \lambda_2 \in \mathbb{R}$ be two distinct eigenvalues of $A$
+    with corresponding eigenvectors $v_1, v_2$.
+    Then $v_1$ and $v_2$ are orthogonal.\\[2.22mm]
+\lemma{Symmetric matrix has real EW}: A symmetric matrix $A \in \mathbb{R}^{n \times n}$ has only real eigenvalues:
+    \(
+    \lambda \in \mathbb{C} \quad \Rightarrow \quad \lambda \in \mathbb{R}.
+    \) Indeed, if $Av = \lambda v$: \\
+    \(
+    \lambda \|v\|^2
+    = \overline{\lambda} \, v^* v
+    = (\lambda v)^* v
+    = (Av)^* v
+    = v^* A^* v
+    = v^* A v
+    = v^* \lambda v
+    = \lambda \|v\|^2.
+    \)
+    $\Rightarrow$ every symmetric matrix
+    $A \in \mathbb{R}^{n \times n}$
+    has a real eigenvalue.
+(All eigenvalues of symmetric matrices are real. And every symmetric matrix has a real eigenvalue.)
 
-\subsubsection{Rayleigh Quotient}
-Given a symmetric matrix $A$ the Rayleigh Quotient, defined for $\mathbf{x}\not=\mathbf{0}$, as
-$R(\mathbf{x}) = \frac{\mathbf{x}^\top A\mathbf{x}}{\mathbf{x}^\top\mathbf{x}}$ attains its maximum (or minimum) at 
-$R(\mathbf{v}_{\max}) = \lambda_{\max}$ where $\lambda_{\max}$ is the largest eigenvalue of $A$.
 
-\subsubsection{Positive (Semi)definite Matrix}
+\subsubsection{\greenBox{Rayleigh Quotient}}
+Given a symmetric matrix $A$ the Rayleigh Quotient, is defined for $\mathbf{x}\not=\mathbf{0}$, as
+$R(\mathbf{x}) = \frac{\mathbf{x}^\top A\mathbf{x}}{\mathbf{x}^\top\mathbf{x}}$.
+    The minimum of $R$ is
+    \(
+    R(v_{\min}) = \lambda_{\min},
+    \)
+    and the maximum
+    \(
+    R(v_{\max}) = \lambda_{\max}.
+    \)
+    Here $\lambda_{\max}$/$\lambda_{\min}$ are the largest/smallest
+    eigenvalues of $A$, and
+    $v_{\max}/v_{\min}$ their associated eigenvectors.
+
+\subsubsection{\definition{Positive (Semi)definite Matrix}}
 A symmetric matrix $A$ is Positive Semidefinite (PSD) if all its eigenvalues are non-negative. If all its eigenvalues are strictly positive, then A is Positive Definite (PD). \\
-A matrix $A$ is PSD if and only if $\mathbf{x}^\top A\mathbf{x} \geq 0$ for all $\mathbf{x}$. \\[2.22mm]
-If $A$ and $B$ are PSD (or PD) then their sum is PSD (or PD).\\[2.22mm]
-Given a real matrix $A_{m\times n}$, the non-zero eigenvalues of $A^\top A$ are the same as the ones of $AA^\top$. Both are positive semidefinite.
+\greenBox{A matrix $A$ is PSD if and only if $\mathbf{x}^\top A\mathbf{x} \geq 0$ for all $\mathbf{x}\in \mathbb{R}^n$}. \\
+\greenBox{A matrix $A$ is PD if and only if $\mathbf{x}^\top A\mathbf{x} > 0$ for all $\mathbf{x} \neq 0$}. \\[2.22mm]
+(If $A$ and $B$ are PSD (or PD) then their sum is PSD (or PD).)\\[2.22mm]
+Given a real matrix $A\in \mathbb{R}^{m\times n}$, the \greenBox{non-zero eigenvalues of $A^\top A \in \mathbb{R}^{n\times n}$} are the same as the ones of \greenBox{$AA^\top \in \mathbb{R}^{m \times m}$}. Both are \greenBox{symmetric and positive semidefinite}.
 
-\subsubsection{Gram Matrix}
-Given $m$ vectors, their Gram Matrix is $G = V^\top V$ where $V$ is the matrix whose columns are the $m$ vectors.\\[2.22mm]
-Every positive semidefinite matrix $M$ is a gram matrix of an upper triangular matrix $C$. $M = C^\top C$ is known as the \textbf{Cholesky Decomposition}.
+\subsubsection{\definition{Gram Matrix}}
+Given vectors $v_1,\dots,v_n\in\mathbb{R}^m$, their \emph{Gram matrix} is
+$G\in\mathbb{R}^{n\times n}$ defined by
+\(
+G_{ij}=v_i^\top v_j.
+\)
+If $V=[v_1\,\cdots\,v_n]\in\mathbb{R}^{m\times n}$, then
+\(
+G=V^\top V.
+\)\\
+If $A=[a_1\,\cdots\,a_n]\in\mathbb{R}^{m\times n}$, one also calls
+$AA^\top$ a Gram matrix; note that
+\(
+AA^\top=\sum_{i=1}^n a_i a_i^\top
+\). It is a \(m \times m\) matrix.
+%Given $m$ vectors, their Gram Matrix is $G = V^\top V \in \mathbb{R}^{m\times m}$ where $V$ is the matrix whose columns are the $m$ vectors.
+\\[2.22mm]
+Every positive semidefinite matrix $M$ is a gram matrix of an upper triangular matrix $C$. $M = C^\top C$ is known as the \greenBox{\textbf{Cholesky Decomposition}}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{Singular Value Decomposition}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\subsection{\definition{Singular Value Decomposition}}
 
-Every matrix $A_{m\times n}$ has a Singular Value Decomposition (SVD) decomposition of the form
+\theorem{Every matrix $A\in \mathbb{R}^{m\times n}$ has a SVD} (Singular Value Decomposition) of the form 
 $$A = U\Sigma V^\top$$ 
-where $\Sigma_{m\times n}$ is a rectangular diagonal matrix with entries $\sigma_i = \Sigma_{ii}$ called \textbf{Singular Values} of $A$ and ordered $\sigma_1\geq\cdots\geq\sigma_{\min(m,n)}$, 
-$U_{m\times m}$ ($V_{n\times n}$) is orthogonal with columns called Left (Right) \textbf{Singular Vectors} of A.
-\subsubsection{Compact SVD}
+where $\Sigma\in \mathbb{R}^{m\times n}$ is a rectangular diagonal matrix with entries $\sigma_i = \Sigma_{ii}$ called \textbf{Singular Values} of $A$ and ordered $\sigma_1\geq\cdots\geq\sigma_{\min(m,n)}$, 
+$U\in \mathbb{R}^{m\times m}$ ($V \in \mathbb{R}^{n\times n}$) is orthogonal with columns called Left (Right) \textbf{Singular Vectors} of A.\\
+This also means: Every linear transformation is diagonal in orthonormal bases of singular vectors.
+\subsubsection{\greenBox{Compact SVD}}
 If $\text{rank}(A) = r$, then $A = U_r\Sigma_rV_r^\top$ where $U_r$, $\Sigma_r$, $V_r$ contain the first $r$ singular vectors or values.\\[2.22mm]
-We can write any rank-$r$ matrix $A$ as a sum of $r$ rank-1 matrices: $A = \sum_{k=1}^{r}\sigma_k\mathbf{u}_k\mathbf{v}_k^\top$ where $\mathbf{u}_k$ ($\mathbf{v}_k$) is the $k$-th column of $U$ ($V$).
+\greenBox{SVD as a sum of rank-one matrices}: We can write any rank-$r$ matrix $A$ as a sum of $r$ rank-1 matrices: $A = \sum_{k=1}^{r}\sigma_k\mathbf{u}_k\mathbf{v}_k^\top$ where $\mathbf{u}_k$ ($\mathbf{v}_k$) is the $k$-th column of $U$ ($V$) (the corresponding singular vectors).
 
 \subsubsection{Constructing the matrices}
 Since $AA^\top = U(\Sigma\Sigma^\top)U^\top$, the columns of $U$ are the eigenvectors of $AA^\top$ and the singular values of $A$ are the square-root of the eigenvalues of $AA^\top$.
@@ -1205,8 +1332,8 @@ Since $A^\top A = V(\Sigma^\top\Sigma)V^\top$, the columns of $V$ are the eigenv
 If $n > m$, $A$ has $m$ singular values and $A^\top A$ has $n$ eigenvalues, but the “missing” ones are 0.
 
 \subsection{Show that SVD is valid}
-To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$ and $U$ are orthogonal (calculate $V^{\top}V$ and $U^{\top}U$ and check if it is the identitiy), then check if $A = U\Sigma T^{\top}$.
-\hl{Quick \& dirty:} $\Sigma$ should only contain entries $\geq 0$, due to square root, check that $U, V$ orthogonal \& ``normalized'' (= common factors extracted) and verify dimensions of the matrices (s.t. matrix multiplication works)\\[2.22mm]
+To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$ and $U$ are orthogonal (calculate $V^{\top}V$ and $U^{\top}U$ and check if it is the identitiy), then check if $A = U\Sigma T^{\top}$.\\
+\redBox{Quick \& dirty:} $\Sigma$ should only contain entries $\geq 0$, due to square root, check that $U, V$ orthogonal \& ``normalized'' (= common factors extracted) and verify dimensions of the matrices (s.t. matrix multiplication works)\\[2.22mm]
 
 \textbf{SVD of $A^{-1}$:} $V\Sigma^{-1}U^{\top}$. Requires proof: $AA^{-1} = I = A^{\top}A \Leftrightarrow AV\Sigma^{-1}U^{\top} = U\Sigma V^{\top}V\Sigma^{-1}U^{\top} = I$
 
