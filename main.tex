@@ -147,7 +147,7 @@ Every vector in $\mathbb{R}^m$ can be written as $\sum^m_{i=1} u_i\mathbf{e}_i$.
 \item 
     \textbf{convex}: if both \textit{affine} and \textit{conic} combination
 \end{enumerate}
-\includegraphics[width=\columnwidth]{images/affine etc.png} 
+\includegraphics[width=0.5\columnwidth]{images/affine etc.png} 
 \subsubsection{Lengths and Angles from Dot Products}
 \definition{Scalar (or dot, inner) product}:
 $\mathbf{v} \cdot \mathbf{w} = v_1w_1 + \cdots + v_nw_n$. \\
@@ -432,14 +432,14 @@ $f^{-1}\circ f=id$, $(f^{-1})^{-1}=f$
 \end{align*}
 
 \subsubsection{Definition of Linear Transformations}
-Given two vector spaces $U$ and $V$, a Linear Transformation is a function $T : U \rightarrow V$ such that, for all $\mathbf{v},\mathbf{w} \in U$ and $\alpha \in \mathbb{R}$ we have
+Given two vector spaces $U$ and $V$, a Linear Transformation is a function $T : U \rightarrow V$ such that, for all $\mathbf{v},\mathbf{w} \in U$ and $\lambda \in \mathbb{R}$ we have
 \[
     (i)\ T(\mathbf{v} + \mathbf{w}) = T(\mathbf{v}) + T(\mathbf{w}),\qquad
-    (ii)\ T(\alpha\mathbf{v}) = \alpha T(\mathbf{v}).
+    (ii)\ T(\lambda\mathbf{v}) = \lambda T(\mathbf{v}).
 \]
 
 \subsubsection{Transformations of $\mathbb{R}^n$}
-We will now focus on linear transformations from $\mathbb{R}^n$ to itself, corresponding to square matrices $A_{n\times n}$. We will focus on $\mathbb{R}^2$.
+We will now focus on linear transformations from $\mathbb{R}^n$ to itself, corresponding to square matrices $A\in \mathbb{R}^{n\times n}$. We will focus on $\mathbb{R}^2$.
 
 \begin{multicols}{2}
     $$A = 
@@ -609,7 +609,7 @@ If $|G| < \dim V$, then $\operatorname{span}(G) \neq V$.
 
 
 %%%
-\subsection{\textcolor{LimeGreen}{Computing the three fundamental subspaces}}
+\subsection{Computing the three fundamental subspaces}
 $\mathbf{N}(A) = \{\mathbf{x}\in\mathbb{R}^n: A\mathbf{x}=\mathbf{0}\}$ is a subspace of $\mathbb{R}^n$. \\
 “Computing” a subspace: find a basis of it! 
 If all columns are independent: $\mathbf{N}(A) = \{\mathbf{0}\}$. 
