@@ -24,6 +24,7 @@
 % make itemize use less space
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
 
 % Remove titlespacing
 \usepackage{titlesec}
@@ -148,7 +149,7 @@ $\sum^n_{i=1}\lambda_i\mathbf{v}_i$, e.g. $5\begin{pmatrix}2\\3\end{pmatrix} - 3
 
 Every vector in $\mathbb{R}^m$ can be written as $\sum^m_{i=1} u_i\mathbf{e}_i$.
 
-\begin{enumerate}[(i)]
+\begin{enumerate}[label=(\roman*)]
 \item 
     \textbf{affine}: if $\lambda_1 + \lambda_2 + ... + \lambda_n = 1$
 \item 
@@ -175,7 +176,7 @@ $$\underbrace{|\mathbf{v} \cdot \mathbf{w}|}_{|\cos{\alpha}|||\mathbf{v}||||\mat
 
 \subsubsection{\definition{Linear (In)dependence} of Vectors}
 $\mathbf{w}_1, \mathbf{w}_2, \dots , \mathbf{w}_k$ are linearly \textbf{independent} if:
-\begin{enumerate}[(i)]
+\begin{enumerate}[label=(\roman*)]
 \item 
     \underline{no} vector is a linear combination of the previous ones. Or
 \item 
@@ -447,48 +448,46 @@ Given two vector spaces $U$ and $V$, a Linear Transformation is a function $T : 
     (ii)\ T(\lambda\mathbf{v}) = \lambda T(\mathbf{v}).
 \]
 
-\subsubsection{Transformations of $\mathbb{R}^n$}
-We will now focus on linear transformations from $\mathbb{R}^n$ to itself, corresponding to square matrices $A\in \mathbb{R}^{n\times n}$. We will focus on $\mathbb{R}^2$.
 
-\begin{multicols}{2}
-    $$A = 
-    \begin{bmatrix}
-        1 & 0 \\
-        0 & 2
-    \end{bmatrix}$$
-    corresponds to \textbf{stretching} by a factor of 2 in the vertical axis. \\
-    \includegraphics[width=\columnwidth]{stretch}
-\end{multicols}
+% \begin{multicols}{2}
+%     $$A = 
+%     \begin{bmatrix}
+%         1 & 0 \\
+%         0 & 2
+%     \end{bmatrix}$$
+%     corresponds to \textbf{stretching} by a factor of 2 in the vertical axis. \\
+%     \includegraphics[width=\columnwidth]{stretch}
+% \end{multicols}
 
-\begin{multicols}{2}
-    $$A = 
-    \begin{bmatrix}
-        1 & 0 \\
-        1 & 1
-    \end{bmatrix}$$
-    corresponds to a \textbf{shearing} transformation. \\
-    \includegraphics[width=\columnwidth]{shear}
-\end{multicols}
+% \begin{multicols}{2}
+%     $$A = 
+%     \begin{bmatrix}
+%         1 & 0 \\
+%         1 & 1
+%     \end{bmatrix}$$
+%     corresponds to a \textbf{shearing} transformation. \\
+%     \includegraphics[width=\columnwidth]{shear}
+% \end{multicols}
 
-\begin{multicols}{2}
-    $$A = 
-    \begin{bmatrix}
-        \frac{1}{\sqrt2} & -\frac{1}{\sqrt2} \\
-        \frac{1}{\sqrt2} & \frac{1}{\sqrt2}
-    \end{bmatrix}$$
-    corresponds to a counter-clockwise \textbf{rotation} by $\frac{\pi}{4}$. \\
-    \includegraphics[width=\columnwidth]{rotation}
-\end{multicols}
+% \begin{multicols}{2}
+%     $$A = 
+%     \begin{bmatrix}
+%         \frac{1}{\sqrt2} & -\frac{1}{\sqrt2} \\
+%         \frac{1}{\sqrt2} & \frac{1}{\sqrt2}
+%     \end{bmatrix}$$
+%     corresponds to a counter-clockwise \textbf{rotation} by $\frac{\pi}{4}$. \\
+%     \includegraphics[width=\columnwidth]{rotation}
+% \end{multicols}
 
-\begin{multicols}{2}
-    $$A = 
-    \begin{bmatrix}
-        0 & 1 \\
-        1 & 0
-    \end{bmatrix}$$
-    corresponds to a \textbf{reflection} by the diagonal line $x_2 = x_1$. \\
-    \includegraphics[width=\columnwidth]{reflection}
-\end{multicols}
+% \begin{multicols}{2}
+%     $$A = 
+%     \begin{bmatrix}
+%         0 & 1 \\
+%         1 & 0
+%     \end{bmatrix}$$
+%     corresponds to a \textbf{reflection} by the diagonal line $x_2 = x_1$. \\
+%     \includegraphics[width=\columnwidth]{reflection}
+% \end{multicols}
 
 
 \subsubsection{Facts about Linear Transformations}
@@ -583,7 +582,7 @@ Why “left”? All solutions of $A^\top\mathbf{y} = \mathbf{0}$ = all solutions
 Let $V$ be a vector space. A subset $B\subseteq V$ is called a \definition{basis} of $V$ if $B$ is linearly independent and it spans $V$: $Span(B)=V$. \\
 \lemma{Independant columns form basis of $\mathbf{C}(A)$} \\
 \redBox{Non-uniqueness of basis}: Every set $B \subseteq \mathbb{R}^m$ of $m$ linearly independent vectors is a basis of $\mathbb{R}^m$. \\
-\definition{Finitely generated vector space}: $\exists G \subseteq V$ with $Span(G)=V$. Then $V$ has a basis $B\subseteq G$.
+\definition{Finitely generated vector space}: $\exists G \subseteq V$ with $Span(G)=V$. Then $V$ has a basis $B\subseteq G$.\\
 \theorem{Finitely generated Vector Space has a basis} \\
 \lemma{Steinitz exchange lemma}: "exchanging elements between $G$ and $F$":\\
 $V$ is finitely generated vector space, $F\subseteq V$ a finite set of lin. independent vectors, and $G\subseteq V$ a finite set of vectors with $Span(G)=V$, then:
@@ -729,13 +728,26 @@ $$
 \theorem{Systems of rank $m$ are solvable} Let $A\in\mathbb{R}^{m\times n}$ with $\operatorname{rank}(A)=m$, $A\mathbf{x} = \mathbf{b}$ is solvable for all $\mathbf{b}\in\mathbb{R}^m$. \\
 \theorem{Systems of rank less than $m$ are typ. unsolvable} Systems of rank $r < m$ are typically unsolvable. \\
 \definition{Types of systems}
-Let $A\in\mathbb{R}^{m\times n}$ and $b\in\mathbb{R}^m$. The system $A\in\mathbb{R}^{m\times n}$ is called: \\ $\bullet \ m=n \Rightarrow \text{square ($A$ is a square matrix)}\ \star \  \textbf{typ. solvable} \\ \bullet \ m<n \Rightarrow \text{underdetermined ($A$ is a wide matrix)} \ \star \  \textbf{typ. solvable} \\ \bullet \ m>n \Rightarrow \text{overdetermined ($A$ is a tall matrix)} \ \star \  \textbf{typ. unsolvable}.$  \textbf{“Typical”} matrices are with $m \leq n$ and have rank $r = m$.
+Let $A\in\mathbb{R}^{m\times n}$ and $\mathbf{b}\in\mathbb{R}^m$. The system $A\in\mathbb{R}^{m\times n}$ is called: \\
+\begin{itemize}
+    \item $m=n \Rightarrow \text{square ($A$ is a square matrix)}\ \star \  \textbf{typ. solvable}$
+    \item $m<n \Rightarrow \text{underdetermined ($A$ is a wide matrix)} \ \star \  \textbf{typ. solvable}$
+    \item $m>n \Rightarrow \text{overdetermined ($A$ is a tall matrix)} \ \star \  \textbf{typ. unsolvable}$
+\end{itemize}
+\textbf{“Typical”} matrices are with $m \leq n$ and have rank $r = m$.\\
 Apply row operations also to $\mathbf{b}$ ($A \rightarrow R_0, \mathbf{b} \rightarrow \mathbf{c}$). \\[1.11mm]
 
 % \includegraphics[width=\columnwidth]{axb}
 
+\subsubsection{The set of all solutions to a SLE}
+\lemma{Injectivity of \(A\) on \(C(A^\top)\), uniqueness of sol.}:\\ \(A \in \mathbb{R}^{m \times n}, \ x,y\in C(A^\top): \ Ax = Ay \Leftrightarrow x = y \) \\ This leads to: \(C(A^T) \cap N(A) = \{0\}\) \\
+\theorem{Set of all solution of linear equations}\\
+Set of all sol. : $\{x \in \mathbb{R}^n | Ax = b\}  \neq \emptyset$, then: \\ $\{ x \in \mathbb{R}^n \mid Ax = b \} = x_1 + N(A), \ \ x_1 \in R(A) \text{ is unique s.t. } Ax_1 = b.$ \\
+\theorem{Linear equations with no solution} \\
+Linear equations has no solution: \\ $\{ x \in \mathbb{R}^n \mid Ax = b \} = \emptyset \;\Longleftrightarrow\; \{ z \in \mathbb{R}^m \mid A^{T} z = 0,\; b^{T} z = 1 \} \neq \emptyset.$ \\
+
 \subsubsection{Number of solutions of $A\mathbf{x} = \mathbf{b}$}
-\begin{center}\includegraphics[width=.6\columnwidth]{solutions}\end{center}
+\begin{center}\includegraphics[width=.5\columnwidth]{solutions}\end{center}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1146,7 +1158,8 @@ Let $A\in \mathbb{R}^{n\times n}$ and let $\mathbf{v}_1,\dots,\mathbf{v}_k \in \
 If $\lambda_1,\dots,\lambda_k$ are all distinct, the eigenvectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ are \lemma{linearly independent}.\\[2.22mm]
 If $A_{n\times n}$ has $n$ distinct real eigenvalues, then the eigenvectors \theorem{form a basis for $\mathbb{R}^n$} (Eigenbasis).\\[2.22mm]
 The eigenvalues of $A \in \mathbb{R}^{n \times n}$ \lemma{are the same as those of $A^T$}.
-\textit{Proof:} $\det(A - zI) = \det((A - zI)^\top) = det(A^\top - zI)$. \\[2.22mm]
+\textit{Proof:} $\det(A - zI) = \det((A - zI)^\top) = det(A^\top - zI)$. 
+
 
 \subsubsection{\definition{Characteristic Polynomial}}
 \[
@@ -1213,15 +1226,15 @@ where $\Lambda$ is a diagonal matrix with $\Lambda_{ii} = \lambda_i$.\\
     \Lambda = V^{-1} A V,
     \)
     since $V$ is invertible. \\
-    \[
-    \text{Std. coord.}
-    \;\xrightarrow{V^{-1}}\;
-    \text{EV. coord.}
-    \;\xrightarrow{\Lambda}\;
-    \text{EV. coord.}
-    \;\xrightarrow{V}\;
-    \text{Std. coord.}
-\]\\[2.22mm]
+%     \[
+%     \text{Std. coord.}
+%     \;\xrightarrow{V^{-1}}\;
+%     \text{EV. coord.}
+%     \;\xrightarrow{\Lambda}\;
+%     \text{EV. coord.}
+%     \;\xrightarrow{V}\;
+%     \text{Std. coord.}
+% \]\\[2.22mm]
 A matrix $A \in \mathbb{R}^{n \times n}$ is called \definition{diagonalizable} if there exists
     an invertible matrix $V$ such that
     \(
@@ -1341,9 +1354,266 @@ To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$
 
 
 
+\end{multicols*}
+
+\newpage
+
+\begin{multicols*}{5}
+\begin{small}
+
+%
+\titleformat{\section}
+  {\fontsize{8pt}{9pt}\selectfont\bfseries\color{teal}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\fontsize{6pt}{8pt}\selectfont\bfseries\color{LimeGreen}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\fontsize{5pt}{7pt}\selectfont\bfseries}
+  {\thesubsection}{1em}{}
+
+  % Remove titlespacing
+\titlespacing*{\section}
+{0pt}{0.8ex}{0.6ex}
+
+\titlespacing*{\subsection}
+{0pt}{0.6ex}{0ex}
+
+\titlespacing*{\subsubsection}
+{0pt}{2.0ex}{0.4ex}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercise Tricks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ Non-Trivial null-space $\Rightarrow$ $\text{rank}(A) < n$ if $A \in \mathbb{R}^{n \times n}$
+
+    $A \in \mathbb{R}^{2 \times 2}$ for which $A^{\top} = -A \Leftrightarrow \begin{bmatrix}
+            0  & a \\
+            -a & 0
+        \end{bmatrix}$
+
+
+\subsection{Basics}
+\textbf{Squares of numbers:} $14: 196, 15: 225, 16: 256, 17: 289, 18: 324, 19: 361, 21: 441, 22: 484, 23: 529, 24: 576$ \\
+\textbf{Long multiplication:} $a \cdot b$, for $n = \text{len}(a), m = \text{len}(b)$ we have $\displaystyle\sum_{i = 0}^{n - 1} \left(\sum_{j = 0}^{m - 1} a[i] \cdot b[j] * 10^{m - 1  - j}\right) \cdot 10^{n - 1 - i}$
+
+
+\subsection{Subspace of matrix vector space}
+$U = \{A \in \mathbb{R}^{2 \times 2} : \text{Tr}(A) = 0\}$. Prove $\dim(U) = 3$. $U \subseteq \mathbb{R}^{2 \times 2}$:
+
+Claim that the standard basis of $\mathbb{R}^{2 \times 2}$ form a basis of $U$, thus implying $\dim(U) = 3$. These are $B_1 = \begin{bmatrix}0 & 1\\0 & 0\end{bmatrix}, B_2 = \begin{bmatrix}0 & 0\\1 & 0\end{bmatrix}$ and $B_3 = \begin{bmatrix}1 & 0\\0 & -1\end{bmatrix}$. Prove that they are a basis by proving that they span $U$.
+
+
+
+\subsection{Calculating the Determinant}
+    \begin{itemize}
+        \item \textbf{Method A} $(2\times 2):$ $\text{det}\begin{bmatrix} a & b \\ c & d\end{bmatrix}=ad-bc$.
+        \item \textbf{Method B (Triangular):}  Product of diagonal entries.
+        \item \textbf{Method C (General $n\times n$:} \begin{enumerate}
+            \item Use row operations to convert $A$ to an upper triangular matrix $U$.
+            \item \textbf{Track changes:} Row swap: multiply $\text{det}$ by $-1$; Row subtraction $(R_i-kR_j)$: $\text{det}$ does \textbf{not} change; Scalar multiplication $(kR_i)$: multiply $\text{det}$ by $k$.
+        \end{enumerate}
+        \item $\text{det}(A)=$ (corresponding factors) $\times\prod \bv{u}_{ii}$.
+    \end{itemize}
+
+\subsection{Linear Independence}
+    To check if vectors $\bv{v}_1,\dots,\bv{v}_n$ are linearly independent:
+    \begin{enumerate}
+        \item Form matrix $A=[\bv{v}_1 \dots \bv{v}_n]$.
+        \item Perform \textbf{Gaussian Elimination} to get REF.
+        \item If every column has a pivot (no free variables), they are \textit{independent}; otherwise, they are \textit{dependent}.
+    \end{enumerate}
+
+\subsection{SVD}
+ $A \in \mathbb{R}^{n \times n}$, $A$ invertible. $\sigma_1$ largest SV of $A$, $\sigma_1'$ largest SV of $A^{-1}$. Prove that $\sigma_1\sigma_1' \geq 1$
+
+Use SVD of $A^{-1}$. From this we know that SV of $A^{-1}$ are given by $\frac{1}{\sigma_1} \leq \ldots \leq \frac{1}{\sigma_n}$ (bc. $\Sigma$ is diagonal). Thus, $\sigma_1' = \frac{1}{\sigma_n}$ (largest SV) $\Rightarrow \sigma_1 \cdot \sigma_1' = \frac{\sigma_1}{\sigma_n} \geq 1$ since $\sigma_1 \geq \sigma_n > 0$
+
+\subsubsection{Computing SVD Step-by-Step}
+    Target: $A = U \Sigma V^\top$. (Rank $r$).
+    \begin{enumerate}
+        \item \textbf{Right Singular Vectors ($V$):} 
+        Compute $M = A^\top A$. Find eigenvalues $\lambda_i$ and orthonormal eigenvectors $\mathbf{v}_i$ of $M$.
+        Sort $\lambda_1 \ge \lambda_2 \ge \dots \ge 0$.
+        $V = [\mathbf{v}_1 \dots \mathbf{v}_n]$.
+        \item \textbf{Singular Values ($\Sigma$):}
+        $\sigma_i = \sqrt{\lambda_i}$. Matrix $\Sigma$ has $\sigma_i$ on diagonal.
+        \item \textbf{Left Singular Vectors ($U$):}
+        For $i=1 \dots r$ ($\sigma_i \neq 0$): $\mathbf{u}_i = \frac{1}{\sigma_i} A \mathbf{v}_i$.
+        For $i > r$: Extend to orthonormal basis of $\R^m$ (Gram-Schmidt on Nullspace of $A^\top$).
+    \end{enumerate}
+
+
+\subsection{Fitting a Polynomial (Least Squares)}
+    Task: Fit $p(t) = \alpha_0 + \alpha_1 t + \dots + \alpha_k t^k$ to points $(t_1, y_1), \dots, (t_m, y_m)$.
+    \begin{enumerate}
+        \item Setup $A\mathbf{x} = \mathbf{b}$ where unknowns $\mathbf{x} = (\alpha_0, \dots, \alpha_k)^\top$.
+        \item Matrix $A$ (Vandermonde structure):
+        $$ A = \begin{bmatrix} 1 & t_1 & t_1^2 & \dots \\ \vdots & \vdots & \vdots & \\ 1 & t_m & t_m^2 & \dots \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix} y_1 \\ \vdots \\ y_m \end{bmatrix} $$
+        \item Solve Normal Equations: $A^\top A \hat{\mathbf{x}} = A^\top \mathbf{b}$.
+    \end{enumerate}
+
+\subsection{Tricks for $2\times 2$ Eigenvalues}
+    $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. Char Poly: $\lambda^2 - \text{Tr}(A)\lambda + \text{det}(A) = 0$.
+    \begin{itemize}
+        \item $\lambda_{1,2} = \frac{\text{Tr} \pm \sqrt{\text{Tr}^2 - 4\text{det}}}{2}$.
+        \item \textbf{Real Eigenvalues:} iff Discriminant $D \ge 0$.
+        \item \textbf{One Real Eigenvalue:} iff $D = 0$.
+        \item \textbf{Complex Eigenvalues:} iff $D < 0$ (conjugate pair $a \pm bi$).
+    \end{itemize}
+    
+\subsection{Calculate inverse}
+    \begin{enumerate}
+        \item Form the augmented matrix $[A|I]$.
+        \item Perform \textbf{Gauss-Jordan Elimination}.
+        \item Once $[I|B]$ is reached, then $B=A^{-1}$. If you get a row of zeros on the left side, $A$ is not invertible (singular).
+    \end{enumerate}
+    
+\subsubsection{Finding values for which a matrix is an inverse for another}
+We can interpret a matrix $A^{-1} = \begin{bmatrix}
+        \vline & \vline & \vline \\
+        x_1    & x_2    & x_3    \\
+        \vline & \vline & \vline
+    \end{bmatrix}$, then solve SLEs, using $AA^{-1} = I$, whereas $I = \begin{bmatrix}
+        \vline & \vline & \vline \\
+        e_1    & e_2    & e_3    \\
+        \vline & \vline & \vline
+    \end{bmatrix}$, where $e_1$ is a standard basis vector. Thus, we get $Ax_1 = e_1$, $Ax_2 = e_2$, \dots
+
+Solving all these SLE gives us solutions for all the variables in the original matrix $A$.
+
+
+
+\subsection{Dimensions of subspaces}
+Simply argue with the size of the basis. Thus: Find basis, then argue that the basis specified is actually a basis (by showing that all its elements are linearly independent), then count the number of elements, which is the dimension. \hl{$U_1 \backslash U_2$} can never be a subspace, because $0$ is missing!
+
+
+
+\subsection{Vector combination independence}
+\textit{(Other vectors that also form basis)}
+Given a basis of a vector space, we have $n$ new vectors, formed form a basis.
+To decide if the new set forms a basis, try to construct original vectors from the new ones, or to disprove, show that $0$ vector is a linear combination of the vectors with non-zero coefficients.
+
+
+\subsection{CR-Decomposition}
+Perform row sign-inversion only at the very end, as it can lead to nastiness along the way. $R$ is in RREF, $C$ the columns with pivot in $R$
+
+
+
+\subsection{Eigenvalues}
+For triangle and diagonal matrices, the eigenvalues are on the diagonals. Matrices of all $0$'s are positive semi-definite.
+
+For exercises with a complete set of distinct eigenvalues, we can use the $A = V\Lambda V^{-1}$ decomposition, which for $A^n$ simplifies to $V\cdot \Lambda^n V^{-1}$ and then compute $\Lambda^n$, which is simple because $\Lambda$ is a diagonal matrix (so all entries on diagonal $^n$)
+\textbf{Alternate approach}: $\det(A) = \prod_{i = 1}^{n} \lambda_i$ and $\det(A^n) = \det(A)^n$, then check all determinants
+
+
+
+\subsection{SVD}
+The pseudo-inverse using the SVD uses the concepts of the SVD with CR-Decomposition. $A = U_r \Sigma_r V_r^{\top}$, where $U_r = C$ and $\Sigma_r V_r^{\top} = R$
+
+
+
+\subsection{Quadratic solution formula}
+$\displaystyle \frac{\colorbox{yellow}{-}b \pm \sqrt{b^2 - 4ac}}{2a}$, for $f(x) = ax^2 + bx + c$, result $\mathbb{R}$ iff $b^2 - 4ac \geq 0$.
+
+
+\subsection{Multiplying out with transposes}
+For vectors, we have $(v - u)^{\top}(v - u) = v^{\top} v - 2v^{\top}u + u^{\top}u$
+
+
+\subsection{Number of Solutions of SLE}
+System $Ax = b$ has two characteristic numbers, $m$ (number of equations), $n$ (number of variables). For solution space, we have a third one, $r = \text{rank}(A)$.
+
+\hl{Number of solutions}:
+\begin{tabular}[h!]{|c|c|c|}
+    \hline
+    \rowcolor{red}$R_0$ & $r = n$   & $r < n$        \\
+    \hline
+    $r = m$             & $1$       & $\infty$       \\
+    \hline
+    $r < m$             & $0$ / $1$ & $0$ / $\infty$ \\
+    \hline
+\end{tabular}
+
+\subsection{Quick Sanity Checks}
+
+\begin{itemize}
+    \item \textbf{Trace:} $\text{Tr}(A)=\sum a_{ii}=\sum\lambda_i$ (Sum of diagonal = sum of eigenvalues).
+    \item \textbf{Determinant:} $\text{det}(A)=\prod \lambda_i$ (Product of eigenvalues.
+    \item \textbf{Rank:} Rank = Dimension of $C(A)$ = Dimension of $R(A)$ = Number of non-zero singular values.
+    \item \textbf{Symmetry:} If $A$ is symmetric, eigenvalues are real, eigenvectors are orthogonal.
+    \item \textbf{Orthogonal matrix $Q$:} $Q^\top Q=I$. Determinant is $\pm 1$. Preserves lengths $(\|Q\bv{x}\|=\|\bv{x}\|)$
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof Patterns}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+    \item \textbf{Composition of Implication:} If $S \Rightarrow T$ and $T \Rightarrow U$ are both true, then $S \Rightarrow U$ is true.
+    \item \textbf{Direct proof of Implication:} Prove $S \Rightarrow T$ assuming $S$ and then proving $S$ under that assumption.
+    \item \textbf{Indirect proof of Implication:} Prove $S \Rightarrow T$ by assuming $\neg T$ and proving $\neg S$ under that assumption.
+    \item \textbf{Case distinction:} Prove $S$ by finding a list of $R_1, \ldots, R_n$ (cases) proving at least one $R_i$, then showing that $R_i \Rightarrow S$ for all $R_i$.
+    \item \textbf{Proof by contradiction}: Prove $S$ by assuming it to be false, deriving statements from it until reaching a contradiction.
+    \item \textbf{Existence proof:} Prove $S$ is true for at least one value
+    \item \textbf{Proof by Induction}: Prove $P(0)$ (base case), then prove for any $k$ that $P(k) \rightarrow P(k + 1)$ is true (Induction step). Using an induction hypothesis can be helpful
+\end{itemize}
+
+
+\subsection{How to prove $U$ is a Subspace}
+    To prove $U \subseteq V$ is a subspace:
+    \begin{enumerate}
+        \item \textbf{Check 1 (Zero):} Show $\mathbf{0} \in U$. (Usually easy, if fails $\to$ not a subspace).
+        \item \textbf{Check 2 (Closure):} Let $\mathbf{u}, \mathbf{v} \in U$ and $\lambda \in \R$. Show $\lambda \mathbf{u} + \mathbf{v} \in U$.
+    \end{enumerate}
+    \textit{Counter-example:} To disprove, find specific vectors where closure fails or show $\mathbf{0} \notin U$.
+
+\subsection{How to prove Linear Independence}
+    To prove $\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ are L.I.:
+    \begin{enumerate}
+        \item Set up equation: $\sum_{i=1}^k \lambda_i \mathbf{v}_i = \mathbf{0}$.
+        \item Show that this implies $\lambda_1 = \dots = \lambda_k = 0$.
+        \item \textit{Matrix way:} Form $A = [\mathbf{v}_1 \dots \mathbf{v}_k]$. Show $N(A) = \{\mathbf{0}\}$ (e.g. rank $k$).
+    \end{enumerate}
+
+
+\subsection{How to prove Surjectivity / Injectivity}
+    Let $T: V \to W$ be linear (matrix $A$).
+    \begin{itemize}
+        \item \textbf{Injective (1-to-1):} Show $\text{Ker}(T) = \{\mathbf{0}\}$. (Solve $A\mathbf{x}=\mathbf{0} \implies \mathbf{x}=\mathbf{0}$).
+        \item \textbf{Surjective (Onto):} Show $\text{Im}(T) = W$. (Rank = dim(W)).
+        \item \textbf{Bijective:} Show both (or if $\text{dim}(V)=\text{dim}(W)$, just one is enough).
+    \end{itemize}
+
+
+\subsection{Proving Matrix Properties}
+    \begin{itemize}
+        \item \textbf{Symmetric:} Show $A^\top = A$. (Use $(AB)^\top = B^\top A^\top$).
+        \item \textbf{Orthogonal:} Show $Q^\top Q = I$. (Cols are orthonormal).
+        \item \textbf{Positive Definite:} Show $\mathbf{x}^\top A \mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$.
+    \end{itemize}
+
+
+\subsubsection{Proof of symmetry}
+ $A \in \mathbb{R}^{n \times n}$ satisfying $AA^{\top} = I$ and $A^2 = I$. Prove that $A$ is symmetric.
+
+$A = AI = A(AA^{\top}) = (AA)A^{\top}= (A^2)A^{\top} = IA^{\top} = A^{\top} \Rightarrow A$ is symmetric
+
+
+
+\subsection{Proving commutativity of matrix operation}
+For some matrices, the matrix product is commutative. To prove that, prove that both matrices have linearly independent columns, using the statements from the task and the proof of the first matrix' linear independence. Then finally, show commutativity, e.g. if $AB = I$ and $BA = I$, by showing that $A(BA - I) = 0$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Trigonometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[width=0.33\columnwidth]{unitCircle}
+\includegraphics[width=0.65\columnwidth]{sincostan} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1409,205 +1679,39 @@ To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$
     \item $3 \times 3$: $P = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix} \implies \lambda = \{1, 1, 0\}, \text{rank} = 2, \text{Tr} = 2$
 \end{itemize}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{Trigonometry}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\includegraphics[width=0.49\columnwidth]{unitCircle}
-\includegraphics[width=0.49\columnwidth]{sincostan} 
-    \begin{tabular}[h!]{|c|c|c|c|c|}
-        \hline
-        ° & rad              & $\sin(\xi)$          & $\cos(\xi)$           & $\tan(\xi)$           \\
-        \hline
-        0°                      & $0$              & $0$                  & $1$                   & $1$                   \\
-        \hline
-        30°                     & $\frac{\pi}{6}$  & $\frac{1}{2}$        & $\frac{\sqrt{3}}{2}$  & $\frac{\sqrt{3}}{2}$  \\
-        \hline
-        45°                     & $\frac{\pi}{4}$  & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{2}}{2}$  & $1$                   \\
-        \hline
-        60°                     & $\frac{\pi}{3}$  & $\frac{\sqrt{3}}{3}$ & $\frac{1}{2}$         & $\sqrt{3}$            \\
-        \hline
-        90°                     & $\frac{\pi}{2}$  & $1$                  & $0$                   & $\varnothing$         \\
-        \hline
-        120°                    & $\frac{2\pi}{3}$ & $\frac{\sqrt{3}}{2}$ & $-\frac{1}{2}$        & $-\sqrt{3}$           \\
-        \hline
-        135°                    & $\frac{3\pi}{4}$ & $\frac{\sqrt{2}}{2}$ & $-\frac{\sqrt{2}}{2}$ & $-1$                  \\
-        \hline
-        150°                    & $\frac{5\pi}{6}$ & $\frac{1}{2}$        & $-\frac{\sqrt{3}}{2}$ & $-\frac{\sqrt{3}}{2}$ \\
-        \hline
-        180°                    & $\pi$            & $0$                  & $-1$                  & $0$                   \\
-        \hline
-    \end{tabular}
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{Exercise Tricks}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    \hl{IMPORTANT:} For the multiple-choice exercises, try to come up with a short proof for each option\\[2.2mm]
-
-    Non-Trivial null-space $\Rightarrow$ $\text{rank}(A) < n$ if $A \in \mathbb{R}^{n \times n}$
-
-    $A \in \mathbb{R}^{2 \times 2}$ for which $A^{\top} = -A \Leftrightarrow \begin{bmatrix}
-            0  & a \\
-            -a & 0
-        \end{bmatrix}$
-
-        \subsection{Vector product}
-$a \times b = \begin{pmatrix}a_x\\a_y\\a_z\end{pmatrix} \times \begin{pmatrix}b_x\\b_y\\b_z\end{pmatrix} =
-    \begin{pmatrix}
-        a_y b_z - a_z b_y \\
-        a_z b_x - a_x b_z \\
-        a_x b_y - a_y b_x
-    \end{pmatrix} = c$
-gives us a vector $c$ for which $c \perp a$ and $c \perp b$
-
-
-
-\subsection{Basics}
-\textbf{Squares of numbers:} $14: 196, 15: 225, 16: 256, 17: 289, 18: 324, 19: 361, 21: 441, 22: 484, 23: 529, 24: 576$ \\
-\textbf{Long multiplication:} $a \cdot b$, for $n = \text{len}(a), m = \text{len}(b)$ we have $\displaystyle\sum_{i = 0}^{n - 1} \left(\sum_{j = 0}^{m - 1} a[i] \cdot b[j] * 10^{m - 1  - j}\right) \cdot 10^{n - 1 - i}$
-
-
-\subsection{Proof patterns}
-\newcommand{\pattern}[1]{\shade{Cyan}{#1}}
-\begin{enumerate}[\textbf{(\Roman*)}]
-    \item \textbf{Composition of Implication:} If $S \Rightarrow T$ and $T \Rightarrow U$ are both true, then $S \Rightarrow U$ is true.
-    \item \textbf{Direct proof of Implication:} Prove $S \Rightarrow T$ assuming $S$ and then proving $S$ under that assumption.
-    \item \textbf{Indirect proof of Implication:} Prove $S \Rightarrow T$ by assuming $\neg T$ and proving $\neg S$ under that assumption.
-    \item \textbf{Case distinction:} Prove $S$ by finding a list of $R_1, \ldots, R_n$ (cases) proving at least one $R_i$, then showing that $R_i \Rightarrow S$ for all $R_i$.
-    \item \textbf{Proof by contradiction}: Prove $S$ by assuming it to be false, deriving statements from it until reaching a contradiction.
-    \item \textbf{Existence proof:} Prove $S$ is true for at least one value
-    \item \textbf{Proof by Induction}: Prove $P(0)$ (base case), then prove for any $k$ that $P(k) \rightarrow P(k + 1)$ is true (Induction step). Using an induction hypothesis can be helpful
-\end{enumerate}
-
-
-
-\subsection{Proving bijection}
-We need to prove surjectivity and injectivity separately.
-
-\textbf{Surjectivity}
-Given a function $f: X \rightarrow Y$, it is surjective, iff $\forall y \in Y, \exists x  \in X : f(x) = y$ (continuous function)
-
-
-\textbf{Injectivity}
-$x_1 \neq x_2 \Rightarrow f(x_1) \neq f(x_2)$
-
-
-
-\subsection{Subspace of matrix vector space}
-$U = \{A \in \mathbb{R}^{2 \times 2} : \text{Tr}(A) = 0\}$. Prove $\dim(U) = 3$. $U \subseteq \mathbb{R}^{2 \times 2}$:
-
-Claim that the standard basis of $\mathbb{R}^{2 \times 2}$ form a basis of $U$, thus implying $\dim(U) = 3$. These are $B_1 = \begin{bmatrix}0 & 1\\0 & 0\end{bmatrix}, B_2 = \begin{bmatrix}0 & 0\\1 & 0\end{bmatrix}$ and $B_3 = \begin{bmatrix}1 & 0\\0 & -1\end{bmatrix}$. Prove that they are a basis by proving that they span $U$.
-
-
-
-
-\subsection{Proof of symmetry}
- $A \in \mathbb{R}^{n \times n}$ satisfying $AA^{\top} = I$ and $A^2 = I$. Prove that $A$ is symmetric.
-
-$A = AI = A(AA^{\top}) = (AA)A^{\top}= (A^2)A^{\top} = IA^{\top} = A^{\top} \Rightarrow A$ is symmetric
-
-
-
-
-\subsection{SVD}
- $A \in \mathbb{R}^{n \times n}$, $A$ invertible. $\sigma_1$ largest SV of $A$, $\sigma_1'$ largest SV of $A^{-1}$. Prove that $\sigma_1\sigma_1' \geq 1$
-
-Use SVD of $A^{-1}$. From this we know that SV of $A^{-1}$ are given by $\frac{1}{\sigma_1} \leq \ldots \leq \frac{1}{\sigma_n}$ (bc. $\Sigma$ is diagonal). Thus, $\sigma_1' = \frac{1}{\sigma_n}$ (largest SV) $\Rightarrow \sigma_1 \cdot \sigma_1' = \frac{\sigma_1}{\sigma_n} \geq 1$ since $\sigma_1 \geq \sigma_n > 0$
-
-
-
-
-\subsection{Least squares}
-Least squares is much more versatile than it might seem.
-It can even be used for optimization problems in multiple variables or for finding coefficients of quadratic, etc equations. Let's take $ax^2 + b$ as an example. We want to find $a$ and $b$. The $A$ matrix is then simply $1$s on the first column and $x_1^2$, \dots on the second column. Insert the values for $x_1, \ldots$ and compute least squares
-
-
-\subsection{Finding values for which a matrix is an inverse for another}
-We can interpret a matrix $A^{-1} = \begin{bmatrix}
-        \vline & \vline & \vline \\
-        x_1    & x_2    & x_3    \\
-        \vline & \vline & \vline
-    \end{bmatrix}$, then solve SLEs, using $AA^{-1} = I$, whereas $I = \begin{bmatrix}
-        \vline & \vline & \vline \\
-        e_1    & e_2    & e_3    \\
-        \vline & \vline & \vline
-    \end{bmatrix}$, where $e_1$ is a standard basis vector. Thus, we get $Ax_1 = e_1$, $Ax_2 = e_2$, \dots
-
-Solving all these SLE gives us solutions for all the variables in the original matrix $A$.
-
-
-
-\subsection{Proving commutativity of matrix operation}
-For some matrices, the matrix product is commutative. To prove that, prove that both matrices have linearly independent columns, using the statements from the task and the proof of the first matrix' linear independence. Then finally, show commutativity, e.g. if $AB = I$ and $BA = I$, by showing that $A(BA - I) = 0$
-
-
-
-\subsection{Dimensions of subspaces}
-Simply argue with the size of the basis. Thus: Find basis, then argue that the basis specified is actually a basis (by showing that all its elements are linearly independent), then count the number of elements, which is the dimension. \hl{$U_1 \backslash U_2$} can never be a subspace, because $0$ is missing!
-
-
-
-\subsection{Vector combination independence}
-\textit{(Other vectors that also form basis)}
-Given a basis of a vector space, we have $n$ new vectors, formed form a basis.
-To decide if the new set forms a basis, try to construct original vectors from the new ones, or to disprove, show that $0$ vector is a linear combination of the vectors with non-zero coefficients.
-
-
-\subsection{CR-Decomposition}
-Perform row sign-inversion only at the very end, as it can lead to nastiness along the way. $R$ is in RREF, $C$ the columns with pivot in $R$
-
-
-
-\subsection{Eigenvalues}
-For triangle and diagonal matrices, the eigenvalues are on the diagonals. Matrices of all $0$'s are positive semi-definite.
-
-For exercises with a complete set of distinct eigenvalues, we can use the $A = V\Lambda V^{-1}$ decomposition, which for $A^n$ simplifies to $V\cdot \Lambda^n V^{-1}$ and then compute $\Lambda^n$, which is simple because $\Lambda$ is a diagonal matrix (so all entries on diagonal $^n$)
-\textbf{Alternate approach}: $\det(A) = \prod_{i = 1}^{n} \lambda_i$ and $\det(A^n) = \det(A)^n$, then check all determinants
-
-
-
-\subsection{SVD}
-The pseudo-inverse using the SVD uses the concepts of the SVD with CR-Decomposition. $A = U_r \Sigma_r V_r^{\top}$, where $U_r = C$ and $\Sigma_r V_r^{\top} = R$
-
-
-
-\subsection{Quadratic solution formula}
-$\displaystyle \frac{\colorbox{yellow}{-}b \pm \sqrt{b^2 - 4ac}}{2a}$, for $f(x) = ax^2 + bx + c$, result $\mathbb{R}$ iff $b^2 - 4ac \geq 0$.
-
-
-\subsection{Multiplying out with transposes}
-For vectors, we have $(v - u)^{\top}(v - u) = v^{\top} v - 2v^{\top}u + u^{\top}u$
-
-
-\subsection{Number of Solutions of SLE}
-System $Ax = b$ has two characteristic numbers, $m$ (number of equations), $n$ (number of variables). For solution space, we have a third one, $r = \text{rank}(A)$. $A$ in REF doesn't guarantee solution. $A$ in RREF does (in $\mathbb{R}$)!
-
-\hl{Number of solutions}:
-\begin{tabular}[h!]{|c|c|c|}
-    \hline
-    \rowcolor{red}$R_0$ & $r = n$   & $r < n$        \\
-    \hline
-    $r = m$             & $1$       & $\infty$       \\
-    \hline
-    $r < m$             & $0$ / $1$ & $0$ / $\infty$ \\
-    \hline
-\end{tabular}
-
-
-\begin{center}
-    \begin{Large}
-        \hl{CHECK FOR SMALL ERRORS!}
-    \end{Large}
-
-    These errors could be something like a missing minus. Verify all solutions using computations. 
-
-    \textbf{Example 1:} For Eigenvalues check that $\det(A - \lambda I) = 0$ for all eigenvalues. 
-
-    \textbf{Example 2:} For Eigenvectors check that $Av = \lambda v$ for all eigenvalue-eigenvector pairs. 
-\end{center}
-
-
+\subsection{Transformations of $\mathbb{R}^2$}
+Examples for linear transformations from $\mathbb{R}^2$ to itself, corresponding to square matrices $A\in \mathbb{R}^{2\times 2}$:
+    $$A = 
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 2
+    \end{bmatrix}$$
+    corresponds to \textbf{stretching} by a factor of 2 in the vertical axis. \\
+    $$A = 
+    \begin{bmatrix}
+        1 & 0 \\
+        1 & 1
+    \end{bmatrix}$$
+    corresponds to a \textbf{shearing} transformation. \\
+    $$A = 
+    \begin{bmatrix}
+        \frac{1}{\sqrt2} & -\frac{1}{\sqrt2} \\
+        \frac{1}{\sqrt2} & \frac{1}{\sqrt2}
+    \end{bmatrix}$$
+    corresponds to a counter-clockwise \textbf{rotation} by $\frac{\pi}{4}$. \\
+
+    $$A = 
+    \begin{bmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{bmatrix}$$
+    corresponds to a \textbf{reflection} by the diagonal line $x_2 = x_1$. \\
+
+
+
+
+
+\end{small}
 
 \end{multicols*}
 \end{document}
