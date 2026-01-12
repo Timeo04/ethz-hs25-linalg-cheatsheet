@@ -528,9 +528,9 @@ Use $T(x + y) = T(x) + T(y)$ and $T(\lambda x)=\lambda T(x)$. Insert the linear 
 
 \subsubsection{(Counter)examples of Linear Transformations}
 Functions that are linear transformations: \\[1.11mm]
-\includegraphics[width=\columnwidth]{linear}
+\includegraphics[width=0.8\columnwidth]{linear}\\
 Functions that are not linear transformations: \\[1.11mm]
-\includegraphics[width=\columnwidth]{notLinear}
+\includegraphics[width=0.8\columnwidth]{notLinear}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -735,7 +735,7 @@ Let $A\in\mathbb{R}^{m\times n}$ and $\mathbf{b}\in\mathbb{R}^m$. The system $A\
     \item $m>n \Rightarrow \text{overdetermined ($A$ is a tall matrix)} \ \star \  \textbf{typ. unsolvable}$
 \end{itemize}
 \textbf{“Typical”} matrices are with $m \leq n$ and have rank $r = m$.\\
-Apply row operations also to $\mathbf{b}$ ($A \rightarrow R_0, \mathbf{b} \rightarrow \mathbf{c}$). \\[1.11mm]
+Apply row operations also to $\mathbf{b}$ ($A \rightarrow R_0, \mathbf{b} \rightarrow \mathbf{c}$).
 
 % \includegraphics[width=\columnwidth]{axb}
 
@@ -1033,7 +1033,9 @@ We can compute the pseudoinverse \greenBox{from any full rank factorization}, no
     \end{bmatrix}
     = ad - bc
 \]
-\includegraphics[width=\columnwidth]{33det}
+\begin{center}
+    \includegraphics[width=0.7\columnwidth]{33det}
+\end{center}
 
 \subsection{General case}
 \subsubsection{\definition{Definition}}
@@ -1418,16 +1420,31 @@ Claim that the standard basis of $\mathbb{R}^{2 \times 2}$ form a basis of $U$, 
             \item Use row operations to convert $A$ to an upper triangular matrix $U$.
             \item \textbf{Track changes:} Row swap: multiply $\text{det}$ by $-1$; Row subtraction $(R_i-kR_j)$: $\text{det}$ does \textbf{not} change; Scalar multiplication $(kR_i)$: multiply $\text{det}$ by $k$.
         \end{enumerate}
-        \item $\text{det}(A)=$ (corresponding factors) $\times\prod \bv{u}_{ii}$.
+        \item $\text{det}(A)=$ (corresponding factors) $\times\prod \mathbf{u}_{ii}$.
     \end{itemize}
 
 \subsection{Linear Independence}
-    To check if vectors $\bv{v}_1,\dots,\bv{v}_n$ are linearly independent:
+    To check if vectors $\mathbf{v}_1,\dots,\mathbf{v}_n$ are linearly independent:
     \begin{enumerate}
-        \item Form matrix $A=[\bv{v}_1 \dots \bv{v}_n]$.
+        \item Form matrix $A=[\mathbf{v}_1 \dots \mathbf{v}_n]$.
         \item Perform \textbf{Gaussian Elimination} to get REF.
         \item If every column has a pivot (no free variables), they are \textit{independent}; otherwise, they are \textit{dependent}.
     \end{enumerate}
+
+\subsection{Invertible matrix properties}
+\(A\) is invertible
+    \\
+    \(\Leftrightarrow\) \(A\mathbf{x}=\mathbf{b}\) has a unique solution for every \(\mathbf{b}\)
+    \\
+    \(\Leftrightarrow\) \(N(A) = \mathbf{0}\)
+    \\
+    \(\Leftrightarrow\) \(\operatorname{}{rank}(A) = n\)
+    \\
+    \(\Leftrightarrow\) columns of \(A\) are lin. independent
+    
+\subsection{Homogenous system solutions}
+{A homogenous system \(A\mathbf{x} = 0\) has either one solution \(x = 0\) or infinitely many solutions: all scaled \(\alpha \mathbf{x}\).
+}
 
 \subsection{SVD}
  $A \in \mathbb{R}^{n \times n}$, $A$ invertible. $\sigma_1$ largest SV of $A$, $\sigma_1'$ largest SV of $A^{-1}$. Prove that $\sigma_1\sigma_1' \geq 1$
@@ -1447,7 +1464,20 @@ Use SVD of $A^{-1}$. From this we know that SV of $A^{-1}$ are given by $\frac{1
         For $i=1 \dots r$ ($\sigma_i \neq 0$): $\mathbf{u}_i = \frac{1}{\sigma_i} A \mathbf{v}_i$.
         For $i > r$: Extend to orthonormal basis of $\R^m$ (Gram-Schmidt on Nullspace of $A^\top$).
     \end{enumerate}
-
+    
+\subsubsection{Singular Values inversion}{Since
+    \(
+    \sigma_1 \ge \cdots \ge \sigma_n > 0,
+    \)
+    it follows that
+    \(
+    \frac{1}{\sigma_1} \le \cdots \le \frac{1}{\sigma_n},
+    \)
+    and therefore, when ordered decreasingly, the singular values of \( A^{-1} \) are
+    \(
+    \frac{1}{\sigma_n}, \ldots, \frac{1}{\sigma_1}.
+    \)
+}
 
 \subsection{Fitting a Polynomial (Least Squares)}
     Task: Fit $p(t) = \alpha_0 + \alpha_1 t + \dots + \alpha_k t^k$ to points $(t_1, y_1), \dots, (t_m, y_m)$.
@@ -1547,7 +1577,7 @@ System $Ax = b$ has two characteristic numbers, $m$ (number of equations), $n$ (
     \item \textbf{Determinant:} $\text{det}(A)=\prod \lambda_i$ (Product of eigenvalues.
     \item \textbf{Rank:} Rank = Dimension of $C(A)$ = Dimension of $R(A)$ = Number of non-zero singular values.
     \item \textbf{Symmetry:} If $A$ is symmetric, eigenvalues are real, eigenvectors are orthogonal.
-    \item \textbf{Orthogonal matrix $Q$:} $Q^\top Q=I$. Determinant is $\pm 1$. Preserves lengths $(\|Q\bv{x}\|=\|\bv{x}\|)$
+    \item \textbf{Orthogonal matrix $Q$:} $Q^\top Q=I$. Determinant is $\pm 1$. Preserves lengths $(\|Q\mathbf{x}\|=\|\mathbf{x}\|)$
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proof Patterns}
@@ -1607,6 +1637,8 @@ $A = AI = A(AA^{\top}) = (AA)A^{\top}= (A^2)A^{\top} = IA^{\top} = A^{\top} \Rig
 \subsection{Proving commutativity of matrix operation}
 For some matrices, the matrix product is commutative. To prove that, prove that both matrices have linearly independent columns, using the statements from the task and the proof of the first matrix' linear independence. Then finally, show commutativity, e.g. if $AB = I$ and $BA = I$, by showing that $A(BA - I) = 0$
 
+\subsection{Prove the dimension of a subspace}
+Write the general matrix, apply the constraints, deconstruct into linear combination of independent variables, prove that they span the space, show that they are linearly independent.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
