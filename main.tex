@@ -17,9 +17,9 @@
 %%%% Smaller Spacing
 % --- FONT SIZE OVERRIDE ---
 \usepackage{scrextend}
-\changefontsizes{7pt} 
+\changefontsizes{6pt} 
 
-\linespread{0.8} % Very tight line spacing
+\linespread{0.7} % Very tight line spacing
 
 % make itemize use less space
 \usepackage{enumitem}
@@ -44,7 +44,7 @@
   {\thesection}{1em}{}
 
 \titleformat{\subsection}
-  {\fontsize{8pt}{10pt}\selectfont\bfseries\color{LimeGreen}}
+  {\fontsize{8pt}{10pt}\selectfont\bfseries\color{red}}
   {\thesubsection}{1em}{}
 
 % Layout
@@ -64,7 +64,7 @@
 \date{January 2026}
 
 \begin{document}
-\begin{multicols*}{3}
+\begin{multicols*}{4}
 
 \newtcbox{\yellowBox}{
     on line,
@@ -376,7 +376,7 @@ More matrices: $(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$. \\
 $(A^{-1})^{-1}=A$ \\
 $(A^\top)^{-1}=(A^{-1})^\top$
 
-\subsection{\textcolor{LimeGreen}{Special Matrices}}
+\subsection{Special Matrices}
 \begin{itemize}
     \item \textbf{Identity Matrix} $(a_{ii}=1\text{ for all }i)$: $I$
     \item \textbf{Diagonal Matrix} $(a_{ij}=0\text{ for all }i\ne j)$
@@ -419,7 +419,7 @@ $$
 Interpretation: $\mathbf{v}_1 = 1\mathbf{c}_1 + 0\mathbf{c}_2,\dots, \mathbf{v}_4 = 3\mathbf{c}_1 + -2\mathbf{c}_2$. \\
 Computation: Gauss-Jordan elimination (3.2.1). Get $R$ from RREF. $C$ is the columns from $A$ where there is a pivot in $R$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{teal}{Linear Transformations}}
+\section{Linear Transformations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%
@@ -434,7 +434,7 @@ Let $X, Y$ be sets and $f : X \rightarrow Y$ a function.
 $f^{-1}\circ f=id$, $(f^{-1})^{-1}=f$
 
 %%%
-\subsection{\textcolor{LimeGreen}{Linear Transformations}}
+\subsection{Linear Transformations}
 
 \begin{align*}
     A \in \mathbb{R}^{m\times n} : \mathbb{R}^n &\longrightarrow \mathbb{R}^m \\
@@ -803,7 +803,7 @@ $$
 Transform $Ax = b$ to $Ux = c$ with $U$ upper triangular. 
 Permited row operations: \textbf{exchange}, scalar \textbf{multiplication} (not 0), and \textbf{substraction}. 
 Solving $Ux = c$ also solves $Ax = b$. \\
-\includegraphics[width=\columnwidth]{gaussElimination}
+\includegraphics[width=0.65\columnwidth]{gaussElimination}
 \end{multicols} 
 
 \subsubsection{Elimination and Permutation Matrices}
@@ -919,7 +919,7 @@ Application of least squares problem, in which it is to find $A$ and $\mathbf{b}
     =\begin{pmatrix}1\\0\\1\end{pmatrix},
     \hat{b}(t)   =1+t^2.
     \)\\
-\lemma{Matrix $A$ (\(m\times 2\)) has linearly dependent columns \(\Leftrightarrow\) $t_i = t_j \forall i \neq j$}.
+\lemma{Matrix $A$ (\(m\times 2\)) has linearly dependent columns} \lemma{\(\Leftrightarrow\) $t_i = t_j \forall i \neq j$}.
 
     
 %%%
@@ -1201,7 +1201,7 @@ Given $A$ and an eigenvalue $\lambda$ of $A$ we call the dimension of $\mathbf{N
 \lemma{A matrix has a complete set of real eigenvectors} if and only if all its
     eigenvalues are real and the geometric multiplicities equal the algebraic
     multiplicities for all eigenvalues.\\[2.22mm]
-Let $P$ be the \textbf{Projection Matrix} on the subspace $U \subseteq \mathbb{R}^n$. Then \greenBox{$P$ has two eigenvalues, 0 and 1, and a complete set of real eigenvectors}. \\[2.22mm]
+Let $P$ be the \textbf{Projection Matrix} on the subspace $U \subseteq \mathbb{R}^n$. Then \greenBox{$P$ has two eigenvalues, 0 and 1}, and \greenBox{a complete set of real eigenvectors}. \\[2.22mm]
 For a \textbf{Diagonal Matrix} $D_{n\times n}$, the eigenvalues of $D$ are the diagonal entries of $D$. The canonical basis $\mathbf{e}_1,\dots,\mathbf{e}_n$ is a set of eigenvectors of $D$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1246,7 +1246,7 @@ A matrix $A \in \mathbb{R}^{n \times n}$ is called \definition{diagonalizable} i
 We say that $A\in\mathbb{R}^{n\times n}$ and $B\in\mathbb{R}^{n\times n}$ are \definition{similar matrices} if there exists an invertible matrix $S$ such that $B = S^{-1}AS$. \greenBox{Similar matrices have the same eigenvalues}.
 
 %%%
-\subsection{\textcolor{LimeGreen}{Symmetric Matrices and the Spectral\\Theorem}}
+\subsection{Symmetric Matrices and the Spectral\\Theorem}
 
 \subsubsection{Spectral Theorem}
 \theorem{Spectral Theorem}: Any symmetric matrix $A\in \mathbb{R}^{n\times n}$ has $n$ real eigenvalues and an orthonormal basis consisting of eigenvectors of $A$.\\[2.22mm]
@@ -1352,7 +1352,83 @@ To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$
 
 \textbf{SVD of $A^{-1}$:} $V\Sigma^{-1}U^{\top}$. Requires proof: $AA^{-1} = I = A^{\top}A \Leftrightarrow AV\Sigma^{-1}U^{\top} = U\Sigma V^{\top}V\Sigma^{-1}U^{\top} = I$
 
+\begin{small}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diverses}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Lösung von $A\mathbf{x} = \mathbf{b}$}
+\textbf{Beispiel:} $A = \begin{bmatrix}1 & 2\\2 & 4\end{bmatrix}$, $\mathbf{b} = \begin{bmatrix}3\\6\end{bmatrix}$
+
+\textbf{Lösung:}
+$$\left[\begin{array}{cc|c}
+1 & 2 & 3\\
+2 & 4 & 6
+\end{array}\right] \rightarrow \left[\begin{array}{cc|c}
+1 & 2 & 3\\
+0 & 0 & 0
+\end{array}\right]$$
+
+Partikuläre Lösung: $\mathbf{x}_p = \begin{bmatrix}3\\0\end{bmatrix}$
+
+Vollständige Lösung: $\mathbf{x} = \begin{bmatrix}3\\0\end{bmatrix} + t\begin{bmatrix}-2\\1\end{bmatrix}$, $t \in \mathbb{R}$
+
+\subsection{Projektion}
+\textbf{Beispiel:} Projiziere $\mathbf{b} = \begin{bmatrix}1\\2\\3\end{bmatrix}$ auf $\mathbf{a} = \begin{bmatrix}1\\0\\0\end{bmatrix}$
+
+\textbf{Lösung:}
+$$\text{proj}_{\mathbf{a}}(\mathbf{b}) = \frac{\mathbf{a} \cdot \mathbf{b}}{||\mathbf{a}||^2}\mathbf{a} = \frac{1}{1}\begin{bmatrix}1\\0\\0\end{bmatrix} = \begin{bmatrix}1\\0\\0\end{bmatrix}$$
+
+\subsection{Least Squares}
+\textbf{Beispiel (Textaufgabe):} Ein Experiment misst die Temperatur $T$ zu verschiedenen Zeiten $t$:
+\begin{center}
+\begin{tabular}{c|cccc}
+$t$ [min] & 1 & 2 & 3 & 4 \\
+\hline
+$T$ [°C] & 3 & 5 & 6 & 9
+\end{tabular}
+\end{center}
+Finde die beste lineare Approximation $T = at + b$ (Gerade durch die Punkte).
+
+\textbf{Lösung:} Wir suchen $\begin{bmatrix}a\\b\end{bmatrix}$ sodass $A\mathbf{x} = \mathbf{b}$ mit:
+$A = \begin{bmatrix}1 & 1\\2 & 1\\3 & 1\\4 & 1\end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}a\\b\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}3\\5\\6\\9\end{bmatrix}$
+
+Normal-Gleichung $A^\top A\mathbf{\hat{x}} = A^\top\mathbf{b}$:
+$A^\top A = \begin{bmatrix}1&2&3&4\\1&1&1&1\end{bmatrix}\begin{bmatrix}1&1\\2&1\\3&1\\4&1\end{bmatrix} = \begin{bmatrix}30 & 10\\10 & 4\end{bmatrix}$
+$A^\top\mathbf{b} = \begin{bmatrix}1&2&3&4\\1&1&1&1\end{bmatrix}\begin{bmatrix}3\\5\\6\\9\end{bmatrix} = \begin{bmatrix}70\\23\end{bmatrix}$
+
+$\begin{bmatrix}30 & 10\\10 & 4\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix} = \begin{bmatrix}70\\23\end{bmatrix}$
+
+Mit $(A^\top A)^{-1} = \frac{1}{20}\begin{bmatrix}4 & -10\\-10 & 30\end{bmatrix}$:
+$\mathbf{\hat{x}} = \frac{1}{20}\begin{bmatrix}4 & -10\\-10 & 30\end{bmatrix}\begin{bmatrix}70\\23\end{bmatrix} = \frac{1}{20}\begin{bmatrix}50\\10\end{bmatrix} = \begin{bmatrix}2.5\\0.5\end{bmatrix}$
+
+\textbf{Antwort:} Die beste Gerade ist $T = 2.5t + 0.5$ °C.
+
+\subsection{Gram-Schmidt Prozess}
+\textbf{Beispiel:} Orthonormalisiere $\mathbf{a}_1 = \begin{bmatrix}1\\1\\0\end{bmatrix}$, $\mathbf{a}_2 = \begin{bmatrix}1\\0\\1\end{bmatrix}$
+
+\textbf{Lösung:}
+$$\mathbf{q}_1 = \frac{\mathbf{a}_1}{||\mathbf{a}_1||} = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\\0\end{bmatrix}$$
+
+$$\mathbf{a}'_2 = \mathbf{a}_2 - (\mathbf{a}_2 \cdot \mathbf{q}_1)\mathbf{q}_1 = \begin{bmatrix}1\\0\\1\end{bmatrix} - \frac{1}{2}\begin{bmatrix}1\\1\\0\end{bmatrix} = \begin{bmatrix}1/2\\-1/2\\1\end{bmatrix}$$
+
+$$\mathbf{q}_2 = \frac{\mathbf{a}'_2}{||\mathbf{a}'_2||} = \frac{1}{\sqrt{3/2}}\begin{bmatrix}1/2\\-1/2\\1\end{bmatrix} = \frac{1}{\sqrt{6}}\begin{bmatrix}1\\-1\\2\end{bmatrix}$$
+
+\subsection{Determinante $3 \times 3$}
+\textbf{Beispiel:} Entwicklung nach der ersten Zeile
+$$\det\begin{bmatrix}1 & 2 & 3\\0 & 4 & 5\\0 & 0 & 6\end{bmatrix} = 1 \cdot \det\begin{bmatrix}4 & 5\\0 & 6\end{bmatrix} = 1 \cdot 24 = 24$$
+
+Für Dreiecksmatrizen: Produkt der Diagonalelemente!
+
+\subsection{Cramer'sche Regel}
+\textbf{Beispiel:} Löse $\begin{bmatrix}2 & 1\\1 & 3\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix} = \begin{bmatrix}5\\8\end{bmatrix}$
+
+\textbf{Lösung:}
+$$\det(A) = 2 \cdot 3 - 1 \cdot 1 = 5$$
+$$x = \frac{\det\begin{bmatrix}5 & 1\\8 & 3\end{bmatrix}}{\det(A)} = \frac{15-8}{5} = \frac{7}{5}$$
+$$y = \frac{\det\begin{bmatrix}2 & 5\\1 & 8\end{bmatrix}}{\det(A)} = \frac{16-5}{5} = \frac{11}{5}$$
+\end{small}
 
 
 
@@ -1369,7 +1445,7 @@ To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$
   {\thesection}{1em}{}
 
 \titleformat{\subsection}
-  {\fontsize{6pt}{8pt}\selectfont\bfseries\color{LimeGreen}}
+  {\fontsize{6pt}{8pt}\selectfont\bfseries\color{red}}
   {\thesubsection}{1em}{}
 
 \titleformat{\subsubsection}
@@ -1387,6 +1463,106 @@ To show that a given $V$, $U$ and $\Sigma$ form an SVD, we need to show that $V$
 {0pt}{2.0ex}{0.4ex}
 
 
+
+\subsection{Eigenwerte berechnen}
+\textbf{Beispiel:} Finde die Eigenwerte von $A = \begin{bmatrix}4 & 1\\2 & 3\end{bmatrix}$
+
+\textbf{Lösung:}
+$$\det(A - \lambda I) = \det\begin{bmatrix}4-\lambda & 1\\2 & 3-\lambda\end{bmatrix} = (4-\lambda)(3-\lambda) - 2 = 0$$
+$$\lambda^2 - 7\lambda + 10 = 0 \Rightarrow (\lambda-5)(\lambda-2) = 0$$
+$$\lambda_1 = 5, \quad \lambda_2 = 2$$
+
+\subsection{Eigenvektoren berechnen}
+\textbf{Beispiel:} Finde die Eigenvektoren für $\lambda_1 = 5$ von oben.
+
+\textbf{Lösung:}
+$$(A - 5I)\mathbf{v} = \begin{bmatrix}-1 & 1\\2 & -2\end{bmatrix}\begin{bmatrix}v_1\\v_2\end{bmatrix} = \mathbf{0}$$
+
+Aus $-v_1 + v_2 = 0$ folgt $v_2 = v_1$. Eigenvektor: $\mathbf{v}_1 = \begin{bmatrix}1\\1\end{bmatrix}$
+
+\subsection{Diagonalisierung}
+\textbf{Beispiel:} Diagonalisiere $A = \begin{bmatrix}4 & 1\\2 & 3\end{bmatrix}$
+
+\textbf{Lösung:} Mit $\lambda_1 = 5$, $\mathbf{v}_1 = \begin{bmatrix}1\\1\end{bmatrix}$ und $\lambda_2 = 2$, $\mathbf{v}_2 = \begin{bmatrix}1\\-2\end{bmatrix}$:
+
+$$V = \begin{bmatrix}1 & 1\\1 & -2\end{bmatrix}, \quad \Lambda = \begin{bmatrix}5 & 0\\0 & 2\end{bmatrix}$$
+$$A = V\Lambda V^{-1}$$
+
+\subsection{Potenzen von Matrizen}
+\textbf{Beispiel:} Berechne $A^{10}$ für die diagonalisierte Matrix oben.
+
+\textbf{Lösung:}
+$$A^{10} = V\Lambda^{10}V^{-1} = V\begin{bmatrix}5^{10} & 0\\0 & 2^{10}\end{bmatrix}V^{-1}$$
+
+
+%
+\titleformat{\section}
+  {\fontsize{8pt}{9pt}\selectfont\bfseries\color{teal}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\fontsize{6pt}{8pt}\selectfont\bfseries\color{red}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\fontsize{5pt}{7pt}\selectfont\bfseries}
+  {\thesubsection}{1em}{}
+
+  % Remove titlespacing
+\titlespacing*{\section}
+{0pt}{0.8ex}{0.6ex}
+Exercise
+\titlespacing*{\subsection}
+{0pt}{0.6ex}{0ex}
+
+\titlespacing*{\subsubsection}
+{0pt}{2.0ex}{0.4ex}
+
+
+
+
+\subsection{Positive Semidefinitheit}
+\textbf{Beispiel 1:} Prüfe ob $A = \begin{bmatrix}2 & 1\\1 & 2\end{bmatrix}$ positiv semidefinit ist.
+
+\textbf{Lösung - Methode 1 (Eigenwerte):}
+$$\det(A - \lambda I) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = 0$$
+$$\lambda_1 = 3, \quad \lambda_2 = 1$$
+
+Beide Eigenwerte sind positiv $\Rightarrow$ $A$ ist sogar positiv definit (PD)!
+
+\textbf{Lösung - Methode 2 (Quadratische Form):}
+$$\mathbf{x}^\top A\mathbf{x} = \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2 & 1\\1 & 2\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix} = 2x_1^2 + 2x_1x_2 + 2x_2^2$$
+$$= 2x_1^2 + 2x_1x_2 + 2x_2^2 = (x_1 + x_2)^2 + x_1^2 + x_2^2 \geq 0$$
+
+\textbf{Beispiel 2:} Ist $B = \begin{bmatrix}1 & 2\\2 & 1\end{bmatrix}$ positiv semidefinit?
+
+\textbf{Lösung:}
+$$\det(B - \lambda I) = (1-\lambda)^2 - 4 = \lambda^2 - 2\lambda - 3 = 0$$
+$$\lambda_1 = 3, \quad \lambda_2 = -1$$
+
+Da $\lambda_2 < 0$ ist $B$ NICHT positiv semidefinit!
+
+\textbf{Beispiel 3:} Zeige dass $C = A^\top A$ für jede Matrix $A$ PSD ist.
+
+\textbf{Lösung:} Für beliebiges $\mathbf{x}$:
+$$\mathbf{x}^\top(A^\top A)\mathbf{x} = (A\mathbf{x})^\top(A\mathbf{x}) = ||A\mathbf{x}||^2 \geq 0$$
+
+Also ist $A^\top A$ immer positiv semidefinit!
+
+\textbf{Beispiel 4:} Ist $D = \begin{bmatrix}4 & 2\\2 & 1\end{bmatrix}$ PSD?
+
+\textbf{Lösung:}
+$$\det(D - \lambda I) = (4-\lambda)(1-\lambda) - 4 = \lambda^2 - 5\lambda = 0$$
+$$\lambda_1 = 5, \quad \lambda_2 = 0$$
+
+Da $\lambda_1 \geq 0$ und $\lambda_2 \geq 0$ ist $D$ positiv semidefinit (aber nicht positiv definit, da ein Eigenwert = 0).
+
+
+\subsection{Rang-1 Approximation}
+\textbf{Beispiel:} Approximiere $A = \begin{bmatrix}3 & 3\\2 & 2\end{bmatrix}$ durch eine Rang-1 Matrix.
+
+\textbf{Lösung:} Benutze den größten Singulärwert $\sigma_1 \approx 5.39$ mit zugehörigen Vektoren:
+$$A_1 \approx \sigma_1 \mathbf{u}_1\mathbf{v}_1^\top$$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Exercise Tricks}
@@ -1410,18 +1586,6 @@ $U = \{A \in \mathbb{R}^{2 \times 2} : \text{Tr}(A) = 0\}$. Prove $\dim(U) = 3$.
 
 Claim that the standard basis of $\mathbb{R}^{2 \times 2}$ form a basis of $U$, thus implying $\dim(U) = 3$. These are $B_1 = \begin{bmatrix}0 & 1\\0 & 0\end{bmatrix}, B_2 = \begin{bmatrix}0 & 0\\1 & 0\end{bmatrix}$ and $B_3 = \begin{bmatrix}1 & 0\\0 & -1\end{bmatrix}$. Prove that they are a basis by proving that they span $U$.
 
-
-
-\subsection{Calculating the Determinant}
-    \begin{itemize}
-        \item \textbf{Method A} $(2\times 2):$ $\text{det}\begin{bmatrix} a & b \\ c & d\end{bmatrix}=ad-bc$.
-        \item \textbf{Method B (Triangular):}  Product of diagonal entries.
-        \item \textbf{Method C (General $n\times n$:} \begin{enumerate}
-            \item Use row operations to convert $A$ to an upper triangular matrix $U$.
-            \item \textbf{Track changes:} Row swap: multiply $\text{det}$ by $-1$; Row subtraction $(R_i-kR_j)$: $\text{det}$ does \textbf{not} change; Scalar multiplication $(kR_i)$: multiply $\text{det}$ by $k$.
-        \end{enumerate}
-        \item $\text{det}(A)=$ (corresponding factors) $\times\prod \mathbf{u}_{ii}$.
-    \end{itemize}
 
 \subsection{Linear Independence}
     To check if vectors $\mathbf{v}_1,\dots,\mathbf{v}_n$ are linearly independent:
@@ -1462,7 +1626,7 @@ Use SVD of $A^{-1}$. From this we know that SV of $A^{-1}$ are given by $\frac{1
         $\sigma_i = \sqrt{\lambda_i}$. Matrix $\Sigma$ has $\sigma_i$ on diagonal.
         \item \textbf{Left Singular Vectors ($U$):}
         For $i=1 \dots r$ ($\sigma_i \neq 0$): $\mathbf{u}_i = \frac{1}{\sigma_i} A \mathbf{v}_i$.
-        For $i > r$: Extend to orthonormal basis of $\R^m$ (Gram-Schmidt on Nullspace of $A^\top$).
+        For $i > r$: Extend to orthonormal basis of $\mathbb{R}^m$ (Gram-Schmidt on Nullspace of $A^\top$).
     \end{enumerate}
     
 \subsubsection{Singular Values inversion}{Since
@@ -1559,7 +1723,7 @@ For vectors, we have $(v - u)^{\top}(v - u) = v^{\top} v - 2v^{\top}u + u^{\top}
 \subsection{Number of Solutions of SLE}
 System $Ax = b$ has two characteristic numbers, $m$ (number of equations), $n$ (number of variables). For solution space, we have a third one, $r = \text{rank}(A)$.
 
-\hl{Number of solutions}:
+\textbf{Number of solutions}:\\
 \begin{tabular}[h!]{|c|c|c|}
     \hline
     \rowcolor{red}$R_0$ & $r = n$   & $r < n$        \\
@@ -1597,7 +1761,7 @@ System $Ax = b$ has two characteristic numbers, $m$ (number of equations), $n$ (
     To prove $U \subseteq V$ is a subspace:
     \begin{enumerate}
         \item \textbf{Check 1 (Zero):} Show $\mathbf{0} \in U$. (Usually easy, if fails $\to$ not a subspace).
-        \item \textbf{Check 2 (Closure):} Let $\mathbf{u}, \mathbf{v} \in U$ and $\lambda \in \R$. Show $\lambda \mathbf{u} + \mathbf{v} \in U$.
+        \item \textbf{Check 2 (Closure):} Let $\mathbf{u}, \mathbf{v} \in U$ and $\lambda \in \mathbb{R}$. Show $\lambda \mathbf{u} + \mathbf{v} \in U$.
     \end{enumerate}
     \textit{Counter-example:} To disprove, find specific vectors where closure fails or show $\mathbf{0} \notin U$.
 
@@ -1644,9 +1808,319 @@ Write the general matrix, apply the constraints, deconstruct into linear combina
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trigonometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\includegraphics[width=0.33\columnwidth]{unitCircle}
-\includegraphics[width=0.65\columnwidth]{sincostan} 
+\includegraphics[width=0.8\columnwidth]{unitCircle}
+\includegraphics[width=0.8\columnwidth]{sincostan} 
 
+
+
+
+\subsection{Parallelogrammgesetz}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und seien $v, w \in \mathbb{R}^n$ beliebig. Dann gilt:
+\[
+\|v + w\|^2 + \|v - w\|^2 = 2(\|v\|^2 + \|w\|^2)
+\]
+\end{theorem}
+
+\begin{proof-example}
+Wir berechnen direkt:
+\begin{align*}
+\|v + w\|^2 + \|v - w\|^2 &= (v+w)^T(v+w) + (v-w)^T(v-w) \\
+&= v^Tv + 2v^Tw + w^Tw + v^Tv - 2v^Tw + w^Tw \\
+&= 2v^Tv + 2w^Tw \\
+&= 2(\|v\|^2 + \|w\|^2)
+\end{align*}
+\end{proof-example}
+
+\subsection{Schiefsymmetrische Matrizen}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und sei $S \in \mathbb{R}^{n \times n}$ eine Matrix mit $S^T = -S$. Dann gilt $x^TSx = 0$ für alle $x \in \mathbb{R}^n$.
+\end{theorem}
+
+\begin{proof-example}
+Für beliebiges $x \in \mathbb{R}^n$ gilt:
+\begin{align*}
+x^TSx &= (x^TSx)^T \quad \text{(da Skalar)} \\
+&= x^TS^Tx \\
+&= x^T(-S)x \quad \text{(da } S^T = -S) \\
+&= -x^TSx
+\end{align*}
+Daraus folgt $x^TSx = -x^TSx$, also $2x^TSx = 0$ und somit $x^TSx = 0$.
+\end{proof-example}
+
+\subsection{Lineare Abhängigkeit von vier Vektoren in $\mathbb{R}^2$}
+\begin{theorem}
+Seien $u, v, w, z \in \mathbb{R}^2$ beliebig. Dann existieren Skalare $c_u, c_v, c_w, c_z \in \mathbb{R}$ mit mindestens einem $c_i \neq 0$, sodass
+\[
+c_u + c_v + c_w + c_z = 0 \quad \text{und} \quad c_uu + c_vv + c_ww + c_zz = 0.
+\]
+\end{theorem}
+
+\begin{proof-example}
+Da $\dim(\mathbb{R}^2) = 2$, sind vier Vektoren in $\mathbb{R}^2$ stets linear abhängig. Es existieren also Skalare $c_u, c_v, c_w, c_z \in \mathbb{R}$, nicht alle gleich Null, mit
+\[
+c_uu + c_vv + c_ww + c_zz = 0.
+\]
+
+Falls $c_u + c_v + c_w + c_z = 0$ bereits gilt, sind wir fertig.
+
+Andernfalls sei $s := c_u + c_v + c_w + c_z \neq 0$. Definiere neue Koeffizienten:
+\[
+c'_u := c_u - \frac{s}{4}, \quad c'_v := c_v - \frac{s}{4}, \quad c'_w := c_w - \frac{s}{4}, \quad c'_z := c_z - \frac{s}{4}
+\]
+
+Dann gilt:
+\[
+c'_u + c'_v + c'_w + c'_z = (c_u + c_v + c_w + c_z) - s = 0
+\]
+
+Und:
+\begin{align*}
+c'_uu + c'_vv + c'_ww + c'_zz \\
+= (c_uu + c_vv + c_ww + c_zz) - \frac{s}{4}(u + v + w + z) \\
+= 0 - \frac{s}{4}(u + v + w + z) \\
+= -\frac{s}{4}(u + v + w + z)
+\end{align*}
+
+Nicht alle $c'_i$ sind Null (da ihre Summe 0 ist, aber $s \neq 0$), womit die Behauptung bewiesen ist.
+\end{proof-example}
+
+\subsection{Linearität einer Funktion}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$. Die Funktion $f: \mathbb{R}^n \to \mathbb{R}$ definiert durch
+\[
+f(x) := \sum_{k=1}^n kx_k
+\]
+für alle $x = (x_1, x_2, \ldots, x_n)^T \in \mathbb{R}^n$ ist eine lineare Transformation.
+\end{theorem}
+
+\begin{proof-example}
+Wir müssen zwei Eigenschaften zeigen:
+
+\textbf{(1) Additivität:} Für beliebige $x, y \in \mathbb{R}^n$ gilt:
+\begin{align*}
+f(x + y) &= \sum_{k=1}^n k(x_k + y_k) = \sum_{k=1}^n (kx_k + ky_k) \\
+&= \sum_{k=1}^n kx_k + \sum_{k=1}^n ky_k = f(x) + f(y)
+\end{align*}
+
+\textbf{(2) Homogenität:} Für beliebiges $x \in \mathbb{R}^n$ und $\lambda \in \mathbb{R}$ gilt:
+\begin{align*}
+f(\lambda x) &= \sum_{k=1}^n k(\lambda x_k) = \sum_{k=1}^n \lambda(kx_k) \\
+&= \lambda \sum_{k=1}^n kx_k = \lambda f(x)
+\end{align*}
+
+Somit ist $f$ eine lineare Transformation.
+\end{proof-example}
+
+\subsection{Positive Definitheit und Eigenwerte}
+\begin{theorem}
+Seien $n \in \mathbb{N}_+$ und $S, T \in \mathbb{R}^{n \times n}$ symmetrisch und positiv definit. Falls es einen Vektor $v \in \mathbb{R}^n \setminus \{0\}$ und ein $\lambda \in \mathbb{R}$ gibt mit $STv = \lambda v$, dann gilt $\lambda > 0$.
+\end{theorem}
+
+\begin{proof-example}
+Da $STv = \lambda v$ gilt:
+\[
+v^TSTv = v^T(\lambda v) = \lambda v^Tv = \lambda \|v\|^2
+\]
+
+Da $T$ symmetrisch und positiv definit ist, gilt $v^TTv > 0$ für alle $v \neq 0$.
+
+Sei $w := Tv \neq 0$ (da $T$ positiv definit also invertierbar ist und $v \neq 0$).
+
+Dann gilt:
+\[
+v^TSTv = w^TSw > 0
+\]
+da $S$ positiv definit ist und $w \neq 0$.
+
+Somit folgt $\lambda \|v\|^2 > 0$, und da $\|v\|^2 > 0$ (weil $v \neq 0$), muss $\lambda > 0$ gelten.
+\end{proof-example}
+
+\subsection{Invertierbarkeit von $I + B$}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und $A := I + B$ mit $I \in \mathbb{R}^{n \times n}$ Identitätsmatrix und $B \in \mathbb{R}^{n \times n}$ mit $B_{ij} = 1$ für alle $i,j \in \{1,\ldots,n\}$. Dann ist $A$ invertierbar.
+\end{theorem}
+
+\begin{proof-example}
+Wir zeigen, dass $\det(A) \neq 0$.
+
+Betrachte $B$: alle Einträge sind 1, also $B = \mathbf{1}\mathbf{1}^T$ wobei $\mathbf{1} = (1,1,\ldots,1)^T$.
+
+Die Matrix $B$ hat Rang 1 mit Eigenwert $n$ (zum Eigenvektor $\mathbf{1}$) und Eigenwert 0 mit Vielfachheit $n-1$.
+
+Somit hat $A = I + B$ die Eigenwerte:
+\begin{itemize}
+\item $\lambda_1 = 1 + n$ (mit Eigenvektor $\mathbf{1}$)
+\item $\lambda_2 = \ldots = \lambda_n = 1 + 0 = 1$ (mit Vielfachheit $n-1$)
+\end{itemize}
+
+Da alle Eigenwerte ungleich Null sind, gilt:
+\[
+\det(A) = (1+n) \cdot 1^{n-1} = 1 + n > 0
+\]
+
+Also ist $A$ invertierbar.
+\end{proof-example}
+
+
+
+\subsection{Nicht-Untervektorraum}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und $w \in \mathbb{R}^n$ mit $w \neq 0$. Dann ist die Menge
+\[
+S = \{v \in \mathbb{R}^n : v^Tw \leq 0\}
+\]
+kein Untervektorraum von $\mathbb{R}^n$.
+\end{theorem}
+
+\begin{proof-example}
+Wir zeigen, dass $S$ nicht abgeschlossen unter Addition ist.
+
+Da $w \neq 0$, existiert $i$ mit $w_i \neq 0$. Sei $e_i$ der $i$-te Standardbasisvektor.
+
+Setze $v := -e_i$ falls $w_i > 0$, oder $v := e_i$ falls $w_i < 0$.
+
+Dann gilt $v^Tw = -w_i < 0$ oder $v^Tw = w_i < 0$, also $v \in S$.
+
+Aber: $v + v = 2v$ und
+\[
+(2v)^Tw = 2(v^Tw) < 0
+\]
+
+Allerdings: $v^Tw \leq 0$ und $v^Tw \leq 0$, aber für $\lambda = -1$ gilt:
+\[
+(\lambda v)^Tw = -v^Tw \geq 0
+\]
+
+Falls $v^Tw < 0$, dann ist $(-v)^Tw = -v^Tw > 0$, also $-v \notin S$.
+
+Da $S$ nicht abgeschlossen unter Skalarmultiplikation ist, ist $S$ kein Untervektorraum.
+\end{proof-example}
+
+\subsection{Ungleichung mit Minimum}
+\begin{theorem}
+Seien $n \in \mathbb{N}_+$ und $v, w \in \mathbb{R}^n$ Vektoren mit nicht-negativen Einträgen, d.h. $v_i \geq 0$ und $w_i \geq 0$ für alle $i \in \{1,\ldots,n\}$. Definiere $u_i := \min\{v_i, w_i\}$ für alle $i$ und $u := (u_1, \ldots, u_n)^T$. Dann gilt:
+\[
+v \cdot w \geq \|u\|^2
+\]
+\end{theorem}
+
+\begin{proof-example}
+Für jedes $i \in \{1,\ldots,n\}$ gilt nach Definition von $u_i$:
+\[
+u_i \leq v_i \quad \text{und} \quad u_i \leq w_i
+\]
+
+Multipliziere diese Ungleichungen:
+\[
+u_i^2 \leq v_i w_i
+\]
+
+Summiere über alle $i$:
+\[
+\sum_{i=1}^n u_i^2 \leq \sum_{i=1}^n v_i w_i
+\]
+
+Dies ist äquivalent zu $\|u\|^2 \leq v \cdot w$.
+\end{proof-example}
+
+\subsection{Dimension des Untervektorraums}
+\begin{theorem}
+Sei $U = \{A \in \mathbb{R}^{2 \times 2} : \text{Tr}(A) = 0\}$ die Menge aller $2 \times 2$ Matrizen mit Spur 0. Dann gilt $\dim(U) = 3$.
+\end{theorem}
+
+\begin{proof-example}
+Betrachte die Matrizen:
+\[
+B_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad
+B_2 = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad
+B_3 = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+\]
+
+Alle drei haben Spur 0, also $B_1, B_2, B_3 \in U$.
+
+\textbf{Lineare Unabhängigkeit:} Angenommen $c_1B_1 + c_2B_2 + c_3B_3 = 0$:
+\[
+\begin{pmatrix} c_1 & c_2 \\ c_3 & -c_1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+\]
+Daraus folgt $c_1 = c_2 = c_3 = 0$.
+
+\textbf{Erzeugnis:} Jede Matrix $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ mit $a + d = 0$ (also $d = -a$) lässt sich schreiben als:
+\[
+A = aB_1 + bB_2 + cB_3
+\]
+
+Also ist $\{B_1, B_2, B_3\}$ eine Basis von $U$ und $\dim(U) = 3$.
+\end{proof-example}
+
+\subsection{Symmetrie unter speziellen Bedingungen}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und $A \in \mathbb{R}^{n \times n}$ mit $AA^T = I$ und $A^2 = I$. Dann ist $A$ symmetrisch.
+\end{theorem}
+
+\begin{proof-example}
+Aus $A^2 = I$ folgt $A = A^{-1}$.
+
+Aus $AA^T = I$ folgt $A^T = A^{-1}$.
+
+Also gilt $A = A^T$, d.h. $A$ ist symmetrisch.
+\end{proof-example}
+
+\subsection{Singulärwerte und Inverse}
+\begin{theorem}
+Sei $n \in \mathbb{N}_+$ und $A \in \mathbb{R}^{n \times n}$ invertierbar mit Inverse $A^{-1}$. Sei $\sigma_1$ der größte Singulärwert von $A$ und $\sigma'_1$ der größte Singulärwert von $A^{-1}$. Dann gilt:
+\[
+\sigma_1 \sigma'_1 \geq 1
+\]
+\end{theorem}
+
+\begin{proof-example}
+Sei $\sigma_n$ der kleinste Singulärwert von $A$.
+
+Aus der Theorie wissen wir, dass die Singulärwerte von $A^{-1}$ gleich $\frac{1}{\sigma_i}$ sind (in umgekehrter Reihenfolge).
+
+Also ist $\sigma'_1 = \frac{1}{\sigma_n}$.
+
+Da $\sigma_1 \geq \sigma_n > 0$ (weil $A$ invertierbar ist), folgt:
+\[
+\sigma_1 \sigma'_1 = \sigma_1 \cdot \frac{1}{\sigma_n} \geq \frac{\sigma_n}{\sigma_n} = 1
+\]
+\end{proof-example}
+
+\subsection{Cauchy-Schwarz Anwendung}
+\begin{theorem}
+Seien $n \in \mathbb{N}_+$ und $a_1, \ldots, a_n, b_1, \ldots, b_n \in \mathbb{R}$ mit $b_i > 0$ für alle $i$. Dann gilt:
+\[
+\sum_{i=1}^n \frac{a_i^2}{b_i} \geq \frac{(a_1 + \cdots + a_n)^2}{b_1 + \cdots + b_n}
+\]
+\end{theorem}
+
+\begin{proof-example}
+Definiere die Vektoren:
+\[
+u = \left( \frac{a_1}{\sqrt{b_1}}, \ldots, \frac{a_n}{\sqrt{b_n}} \right)^T, \quad
+v = \left( \sqrt{b_1}, \ldots, \sqrt{b_n} \right)^T
+\]
+
+Nach Cauchy-Schwarz gilt $\|u\| \|v\| \geq |u \cdot v|$, also:
+\[
+\|u\|^2 \|v\|^2 \geq (u \cdot v)^2
+\]
+
+Berechne:
+\begin{align*}
+\|u\|^2 &= \sum_{i=1}^n \frac{a_i^2}{b_i} \\
+\|v\|^2 &= \sum_{i=1}^n b_i \\
+u \cdot v &= \sum_{i=1}^n \frac{a_i}{\sqrt{b_i}} \cdot \sqrt{b_i} = \sum_{i=1}^n a_i
+\end{align*}
+
+Einsetzen ergibt:
+\[
+\left(\sum_{i=1}^n \frac{a_i^2}{b_i}\right) \left(\sum_{i=1}^n b_i\right) \geq \left(\sum_{i=1}^n a_i\right)^2
+\]
+
+Division durch $\sum_{i=1}^n b_i > 0$ liefert die Behauptung.
+\end{proof-example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textcolor{teal}{Example Matrices}}
@@ -1740,6 +2214,120 @@ Examples for linear transformations from $\mathbb{R}^2$ to itself, corresponding
     corresponds to a \textbf{reflection} by the diagonal line $x_2 = x_1$. \\
 
 
+\subsection*{1. Symmetrisch}
+$\begin{pmatrix}2&1\\1&3\end{pmatrix}$ 
+$\begin{pmatrix}1&2&0\\2&3&1\\0&1&4\end{pmatrix}$\\
+\nullyes{} \quad \textit{$A=A^\top$}
+
+\subsection*{2. Orthogonal}
+$\begin{pmatrix}0&1\\1&0\end{pmatrix}$ 
+$\begin{pmatrix}1&0&0\\0&0&1\\0&1&0\end{pmatrix}$\\
+\nullno{} \quad \textit{$Q^\top Q=I$}
+
+\subsection*{3. Positiv definit}
+$\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 
+$\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}$\\
+\nullno{} \quad \textit{$\lambda_i>0$}
+
+\subsection*{4. Diagonal}
+$\begin{pmatrix}3&0\\0&5\end{pmatrix}$ 
+$\begin{pmatrix}2&0&0\\0&4&0\\0&0&6\end{pmatrix}$\\
+\nullyes{} \quad \textit{Nur Diagonale}
+
+\subsection*{5. Obere Dreiecks}
+$\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 
+$\begin{pmatrix}1&2&3\\0&4&5\\0&0&6\end{pmatrix}$\\
+\nullyes{} \quad \textit{Unter Diag. = 0}
+
+\subsection*{6. Untere Dreiecks}
+$\begin{pmatrix}2&0\\3&1\end{pmatrix}$ 
+$\begin{pmatrix}1&0&0\\2&3&0\\4&5&6\end{pmatrix}$\\
+\nullyes{} \quad \textit{Über Diag. = 0}
+
+\subsection*{7. Strikt diag. dom.}
+$\begin{pmatrix}3&1\\1&4\end{pmatrix}$ 
+$\begin{pmatrix}4&1&1\\1&5&2\\1&1&6\end{pmatrix}$\\
+\nullno{} \quad \textit{$|a_{ii}|>\sum_{j\neq i}|a_{ij}|$}
+
+\subsection*{8. Singulär}
+$\begin{pmatrix}1&2\\2&4\end{pmatrix}$ 
+$\begin{pmatrix}1&2&3\\2&4&6\\1&2&3\end{pmatrix}$\\
+\nullyes{} \quad \textit{$\det=0$}
+
+\subsection*{9. Idempotent}
+$\begin{pmatrix}1&0\\0&0\end{pmatrix}$ 
+$\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix}$\\
+\nullyes{} \quad \textit{$A^2=A$}
+
+\subsection*{10. Nilpotent}
+$\begin{pmatrix}0&1\\0&0\end{pmatrix}$ 
+$\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}$\\
+\nullyes{} \quad \textit{$N^k=0$}
+
+\subsection*{11. Invertierbar}
+$\begin{pmatrix}1&2\\3&4\end{pmatrix}$ 
+$\begin{pmatrix}1&0&1\\0&2&0\\1&0&2\end{pmatrix}$\\
+\nullno{} \quad \textit{$\det\neq 0$}
+
+\subsection*{12. Tridiagonal}
+$\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 
+$\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}$\\
+\nullyes{} \quad \textit{3 Diagonalen}
+
+\subsection*{13. Rang-1}
+$\begin{pmatrix}1&2\\2&4\end{pmatrix}$ 
+$\begin{pmatrix}1&2&3\\2&4&6\\1&2&3\end{pmatrix}$\\
+\nullno{} \quad \textit{rank=1}
+
+\subsection*{15. Schiefsymmetrisch}
+$\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ 
+$\begin{pmatrix}0&1&2\\-1&0&3\\-2&-3&0\end{pmatrix}$\\
+\nullyes{} \quad \textit{$A^\top=-A$}
+
+\subsection*{16. Eigenwerte $\gt$ 0}
+$\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 
+$\begin{pmatrix}1&1&0\\0&2&1\\0&0&3\end{pmatrix}$\\
+\nullno{} \quad \textit{$\lambda_i>0$}
+
+\subsection*{17. Eigenwerte $\lt$ 0}
+$\begin{pmatrix}-1&2\\0&-3\end{pmatrix}$ 
+$\begin{pmatrix}-1&1&0\\0&-2&1\\0&0&-3\end{pmatrix}$\\
+\nullno{} \quad \textit{$\lambda_i<0$}
+
+\subsection*{18. Positiv semidefinit}
+$\begin{pmatrix}1&1\\1&1\end{pmatrix}$ 
+$\begin{pmatrix}1&1&0\\1&1&0\\0&0&0\end{pmatrix}$\\
+\nullyes{} \quad \textit{$\lambda_i\geq 0$}
+
+\subsection*{19. Negativ definit}
+$\begin{pmatrix}-2&-1\\-1&-2\end{pmatrix}$ 
+$\begin{pmatrix}-2&-1&0\\-1&-2&-1\\0&-1&-2\end{pmatrix}$\\
+\nullno{} \quad \textit{$\lambda_i<0$}
+
+\subsection*{20. Hermitesch}
+$\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}$ 
+$\begin{pmatrix}1&i&0\\-i&2&1+i\\0&1-i&3\end{pmatrix}$\\
+\nullyes{} \quad \textit{$H=H^*$}
+
+\subsection*{21. Unitär}
+$\begin{pmatrix}\frac{1}{\sqrt{2}}&\frac{i}{\sqrt{2}}\\\frac{i}{\sqrt{2}}&\frac{1}{\sqrt{2}}\end{pmatrix}$ 
+$\begin{pmatrix}1&0&0\\0&\frac{1}{\sqrt{2}}&\frac{i}{\sqrt{2}}\\0&\frac{i}{\sqrt{2}}&\frac{1}{\sqrt{2}}\end{pmatrix}$\\
+\nullno{} \quad \textit{$U^*U=I$}
+
+\subsection*{22. Normal}
+$\begin{pmatrix}1&1\\-1&1\end{pmatrix}$ 
+$\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix}$\\
+\nullyes{} \quad \textit{$AA^*=A^*A$}
+
+\subsection*{23. Involutorisch}
+$\begin{pmatrix}0&1\\1&0\end{pmatrix}$ 
+$\begin{pmatrix}1&0&0\\0&0&1\\0&1&0\end{pmatrix}$\\
+\nullno{} \quad \textit{$A^2=I$}
+
+\subsection*{24. Permutation}
+$\begin{pmatrix}0&1\\1&0\end{pmatrix}$ 
+$\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}$\\
+\nullno{} \quad \textit{1 Eins/Zeile}
 
 
 
